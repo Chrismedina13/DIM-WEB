@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4669234b49148f58b9f810d6b8add50" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Campania" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Direccion" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Especie" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Fallecimiento" Width="1.5" PointX="12" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Mascota" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Medicamento" Width="1.5" PointX="15" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MedicamentosMascotas" Width="1.5" PointX="17.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Raza" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TipoVacuna" Width="1.5" PointX="18" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TipoVisita" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuarios" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Vacunacion" Width="1.5" PointX="20.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Veterinario" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VeterinarioMascota" Width="1.5" PointX="15" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.RefCampania37" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios11" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota42" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios38" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefEspecie25" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefRaza26" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota14" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota45" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota20" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota21" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota23" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios10" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMedicamento24" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota46" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefTipoVacuna41" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefTipoVisita27" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota47" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinario39" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CampaniaMascota" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CampaniaRaza" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

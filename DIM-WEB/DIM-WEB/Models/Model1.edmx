@@ -1,0 +1,1386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Campania">
+          <Key>
+            <PropertyRef Name="CampaniaID" />
+          </Key>
+          <Property Name="CampaniaID" Type="bigint" Nullable="false" />
+          <Property Name="CuposDisponibles" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Tipo" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contacto" Type="varchar" MaxLength="100" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampaniaMascota">
+          <Key>
+            <PropertyRef Name="CampaniaID" />
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="CampaniaID" Type="bigint" Nullable="false" />
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampaniaRaza">
+          <Key>
+            <PropertyRef Name="CampaniaID" />
+            <PropertyRef Name="RazaID" />
+          </Key>
+          <Property Name="CampaniaID" Type="bigint" Nullable="false" />
+          <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="DireccionID" />
+          </Key>
+          <Property Name="DireccionID" Type="bigint" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Numero" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="Piso" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="Departamento" Type="varchar" MaxLength="1" />
+          <Property Name="Localidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CampaniaID" Type="bigint" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="MascotaID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Especie">
+          <Key>
+            <PropertyRef Name="EspecieID" />
+            <PropertyRef Name="RazaID" />
+          </Key>
+          <Property Name="EspecieID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Fallecimiento">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+          <Property Name="Lugar" Type="varchar" MaxLength="100" />
+          <Property Name="EspecificacionRiesgoEpidemiologico" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Causa" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="RiesgoEpidemiologico" Type="tinyint" Nullable="false" />
+          <Property Name="RenglonVisita" Type="int" />
+        </EntityType>
+        <EntityType Name="Mascota">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+          <Property Name="ImagenChapita" Type="varchar(max)" />
+          <Property Name="Peso" Type="int" />
+          <Property Name="Imagen" Type="varchar(max)" />
+          <Property Name="FechaDeNacimiento" Type="datetime" />
+          <Property Name="FechaValidacion" Type="datetime" />
+          <Property Name="NroIdentificadorCriadero" Type="varchar" MaxLength="30" />
+          <Property Name="CodigoDeChip" Type="varchar" MaxLength="30" />
+          <Property Name="DIeta" Type="varchar" MaxLength="250" />
+          <Property Name="OtrosMedicamentos" Type="varchar" MaxLength="100" />
+          <Property Name="Pelaje" Type="varchar" MaxLength="30" />
+          <Property Name="Sexo" Type="smallint" Nullable="false" />
+          <Property Name="CondicionDeSalud" Type="smallint" Nullable="false" />
+          <Property Name="OtrosDatosDeSalud" Type="varchar" MaxLength="250" />
+          <Property Name="Tamanio" Type="smallint" Nullable="false" />
+          <Property Name="CertificadoAntirrabica" Type="varchar(max)" />
+          <Property Name="SeguroResponsabilidadCivil" Type="varchar(max)" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="Especie" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="MedicamentoID" />
+          </Key>
+          <Property Name="MedicamentoID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Utilizable" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicamentosMascotas">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="MedicamentID" />
+          </Key>
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+          <Property Name="MedicamentID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dosis" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Frecuencia" Type="time" Precision="7" Nullable="false" />
+          <Property Name="RenglonVisita" Type="int" />
+        </EntityType>
+        <EntityType Name="Raza">
+          <Key>
+            <PropertyRef Name="RazaID" />
+          </Key>
+          <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="EsRazaPeligrosa" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TipoVacuna">
+          <Key>
+            <PropertyRef Name="VacunaID" />
+          </Key>
+          <Property Name="VacunaID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TipoVisita">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaConfirmacionAlta" Type="datetime" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoUsuario" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ImagenDNI" Type="varchar(max)" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoDocumento" Type="smallint" Nullable="false" />
+          <Property Name="NumeroDocumento" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="CodigoVerificacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacunacion">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="RenglonVacuna" />
+          </Key>
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+          <Property Name="RenglonVacuna" Type="int" Nullable="false" />
+          <Property Name="FechaRevacunacion" Type="datetime" />
+          <Property Name="FechaAplicacion" Type="datetime" Nullable="false" />
+          <Property Name="CodigoSENASA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lote" Type="varchar" MaxLength="20" />
+          <Property Name="Serie" Type="varchar" MaxLength="50" />
+          <Property Name="Dosis" Type="varchar" MaxLength="50" />
+          <Property Name="VacunaID" Type="int" Nullable="false" />
+          <Property Name="RenglonVisita" Type="int" />
+        </EntityType>
+        <EntityType Name="Veterinario">
+          <Key>
+            <PropertyRef Name="VeterinarioID" />
+          </Key>
+          <Property Name="VeterinarioID" Type="int" Nullable="false" />
+          <Property Name="NumeroMatricula" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FechaVerificacionMatricula" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VeterinarioMascota">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="RenglonVisita" />
+          </Key>
+          <Property Name="MascotaID" Type="bigint" Nullable="false" />
+          <Property Name="RenglonVisita" Type="int" Nullable="false" />
+          <Property Name="FechaConsulta" Type="datetime" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Peso" Type="int" />
+          <Property Name="ReportoENO" Type="tinyint" Nullable="false" />
+          <Property Name="TipoID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VeterinarioID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="RefCampania12">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="1" />
+          <End Role="CampaniaRaza" Type="Self.CampaniaRaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campania">
+              <PropertyRef Name="CampaniaID" />
+            </Principal>
+            <Dependent Role="CampaniaRaza">
+              <PropertyRef Name="CampaniaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefCampania28">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="1" />
+          <End Role="CampaniaMascota" Type="Self.CampaniaMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campania">
+              <PropertyRef Name="CampaniaID" />
+            </Principal>
+            <Dependent Role="CampaniaMascota">
+              <PropertyRef Name="CampaniaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefCampania37">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campania">
+              <PropertyRef Name="CampaniaID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="CampaniaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefEspecie25">
+          <End Role="Especie" Type="Self.Especie" Multiplicity="1" />
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especie">
+              <PropertyRef Name="EspecieID" />
+              <PropertyRef Name="RazaID" />
+            </Principal>
+            <Dependent Role="Mascota">
+              <PropertyRef Name="Especie" />
+              <PropertyRef Name="RazaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota14">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="Fallecimiento" Type="Self.Fallecimiento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Fallecimiento">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota20">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota21">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota23">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota29">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="CampaniaMascota" Type="Self.CampaniaMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="CampaniaMascota">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota42">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMedicamento24">
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamento">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MedicamentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefRaza13">
+          <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
+          <End Role="CampaniaRaza" Type="Self.CampaniaRaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raza">
+              <PropertyRef Name="RazaID" />
+            </Principal>
+            <Dependent Role="CampaniaRaza">
+              <PropertyRef Name="RazaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefRaza26">
+          <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
+          <End Role="Especie" Type="Self.Especie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raza">
+              <PropertyRef Name="RazaID" />
+            </Principal>
+            <Dependent Role="Especie">
+              <PropertyRef Name="RazaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefTipoVacuna41">
+          <End Role="TipoVacuna" Type="Self.TipoVacuna" Multiplicity="1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVacuna">
+              <PropertyRef Name="VacunaID" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="VacunaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefTipoVisita27">
+          <End Role="TipoVisita" Type="Self.TipoVisita" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVisita">
+              <PropertyRef Name="TipoID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Veterinario" Type="Self.Veterinario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Veterinario">
+              <PropertyRef Name="VeterinarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios10">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Mascota">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios11">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Campania">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios38">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinario39">
+          <End Role="Veterinario" Type="Self.Veterinario" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterinario">
+              <PropertyRef Name="VeterinarioID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="VeterinarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota45">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="Fallecimiento" Type="Self.Fallecimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="Fallecimiento">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota46">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota47">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Campania" EntityType="Self.Campania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaniaMascota" EntityType="Self.CampaniaMascota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaniaRaza" EntityType="Self.CampaniaRaza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especie" EntityType="Self.Especie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fallecimiento" EntityType="Self.Fallecimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mascota" EntityType="Self.Mascota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicamentosMascotas" EntityType="Self.MedicamentosMascotas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Raza" EntityType="Self.Raza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoVacuna" EntityType="Self.TipoVacuna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoVisita" EntityType="Self.TipoVisita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacunacion" EntityType="Self.Vacunacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veterinario" EntityType="Self.Veterinario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeterinarioMascota" EntityType="Self.VeterinarioMascota" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="RefCampania12" Association="Self.RefCampania12">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="CampaniaRaza" EntitySet="CampaniaRaza" />
+          </AssociationSet>
+          <AssociationSet Name="RefCampania28" Association="Self.RefCampania28">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="CampaniaMascota" EntitySet="CampaniaMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefCampania37" Association="Self.RefCampania37">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefEspecie25" Association="Self.RefEspecie25">
+            <End Role="Especie" EntitySet="Especie" />
+            <End Role="Mascota" EntitySet="Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota14" Association="Self.RefMascota14">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Fallecimiento" EntitySet="Fallecimiento" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota20" Association="Self.RefMascota20">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota21" Association="Self.RefMascota21">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota23" Association="Self.RefMascota23">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota29" Association="Self.RefMascota29">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="CampaniaMascota" EntitySet="CampaniaMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota42" Association="Self.RefMascota42">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefMedicamento24" Association="Self.RefMedicamento24">
+            <End Role="Medicamento" EntitySet="Medicamento" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefRaza13" Association="Self.RefRaza13">
+            <End Role="Raza" EntitySet="Raza" />
+            <End Role="CampaniaRaza" EntitySet="CampaniaRaza" />
+          </AssociationSet>
+          <AssociationSet Name="RefRaza26" Association="Self.RefRaza26">
+            <End Role="Raza" EntitySet="Raza" />
+            <End Role="Especie" EntitySet="Especie" />
+          </AssociationSet>
+          <AssociationSet Name="RefTipoVacuna41" Association="Self.RefTipoVacuna41">
+            <End Role="TipoVacuna" EntitySet="TipoVacuna" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+          <AssociationSet Name="RefTipoVisita27" Association="Self.RefTipoVisita27">
+            <End Role="TipoVisita" EntitySet="TipoVisita" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios1" Association="Self.RefUsuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Veterinario" EntitySet="Veterinario" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios10" Association="Self.RefUsuarios10">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Mascota" EntitySet="Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios11" Association="Self.RefUsuarios11">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Campania" EntitySet="Campania" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios38" Association="Self.RefUsuarios38">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinario39" Association="Self.RefVeterinario39">
+            <End Role="Veterinario" EntitySet="Veterinario" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota45" Association="Self.RefVeterinarioMascota45">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="Fallecimiento" EntitySet="Fallecimiento" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota46" Association="Self.RefVeterinarioMascota46">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota47" Association="Self.RefVeterinarioMascota47">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Campania">
+          <Key>
+            <PropertyRef Name="CampaniaID" />
+          </Key>
+          <Property Name="CampaniaID" Type="Int64" Nullable="false" />
+          <Property Name="CuposDisponibles" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccion" Relationship="Self.RefCampania37" FromRole="Campania" ToRole="Direccion" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios11" FromRole="Campania" ToRole="Usuarios" />
+          <NavigationProperty Name="Mascota" Relationship="Self.CampaniaMascota" FromRole="Campania" ToRole="Mascota" />
+          <NavigationProperty Name="Raza" Relationship="Self.CampaniaRaza" FromRole="Campania" ToRole="Raza" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="DireccionID" />
+          </Key>
+          <Property Name="DireccionID" Type="Int64" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="Piso" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Departamento" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Localidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Provincia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CampaniaID" Type="Int64" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="MascotaID" Type="Int64" />
+          <NavigationProperty Name="Campania" Relationship="Self.RefCampania37" FromRole="Direccion" ToRole="Campania" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefMascota42" FromRole="Direccion" ToRole="Mascota" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios38" FromRole="Direccion" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Especie">
+          <Key>
+            <PropertyRef Name="EspecieID" />
+            <PropertyRef Name="RazaID" />
+          </Key>
+          <Property Name="EspecieID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefEspecie25" FromRole="Especie" ToRole="Mascota" />
+          <NavigationProperty Name="Raza" Relationship="Self.RefRaza26" FromRole="Especie" ToRole="Raza" />
+        </EntityType>
+        <EntityType Name="Fallecimiento">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="Int64" Nullable="false" />
+          <Property Name="Lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EspecificacionRiesgoEpidemiologico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Causa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RiesgoEpidemiologico" Type="Byte" Nullable="false" />
+          <Property Name="RenglonVisita" Type="Int32" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefMascota14" FromRole="Fallecimiento" ToRole="Mascota" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota45" FromRole="Fallecimiento" ToRole="VeterinarioMascota" />
+        </EntityType>
+        <EntityType Name="Mascota">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="Int64" Nullable="false" />
+          <Property Name="ImagenChapita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Peso" Type="Int32" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="FechaValidacion" Type="DateTime" Precision="3" />
+          <Property Name="NroIdentificadorCriadero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoDeChip" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DIeta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OtrosMedicamentos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pelaje" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="Int16" Nullable="false" />
+          <Property Name="CondicionDeSalud" Type="Int16" Nullable="false" />
+          <Property Name="OtrosDatosDeSalud" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Tamanio" Type="Int16" Nullable="false" />
+          <Property Name="CertificadoAntirrabica" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeguroResponsabilidadCivil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Especie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Direccion" Relationship="Self.RefMascota42" FromRole="Mascota" ToRole="Direccion" />
+          <NavigationProperty Name="Especie1" Relationship="Self.RefEspecie25" FromRole="Mascota" ToRole="Especie" />
+          <NavigationProperty Name="Fallecimiento" Relationship="Self.RefMascota14" FromRole="Mascota" ToRole="Fallecimiento" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefMascota20" FromRole="Mascota" ToRole="VeterinarioMascota" />
+          <NavigationProperty Name="Vacunacion" Relationship="Self.RefMascota21" FromRole="Mascota" ToRole="Vacunacion" />
+          <NavigationProperty Name="MedicamentosMascotas" Relationship="Self.RefMascota23" FromRole="Mascota" ToRole="MedicamentosMascotas" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios10" FromRole="Mascota" ToRole="Usuarios" />
+          <NavigationProperty Name="Campania" Relationship="Self.CampaniaMascota" FromRole="Mascota" ToRole="Campania" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="MedicamentoID" />
+          </Key>
+          <Property Name="MedicamentoID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Utilizable" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="MedicamentosMascotas" Relationship="Self.RefMedicamento24" FromRole="Medicamento" ToRole="MedicamentosMascotas" />
+        </EntityType>
+        <EntityType Name="MedicamentosMascotas">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="MedicamentID" />
+          </Key>
+          <Property Name="MascotaID" Type="Int64" Nullable="false" />
+          <Property Name="MedicamentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dosis" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Frecuencia" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="RenglonVisita" Type="Int32" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefMascota23" FromRole="MedicamentosMascotas" ToRole="Mascota" />
+          <NavigationProperty Name="Medicamento" Relationship="Self.RefMedicamento24" FromRole="MedicamentosMascotas" ToRole="Medicamento" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota46" FromRole="MedicamentosMascotas" ToRole="VeterinarioMascota" />
+        </EntityType>
+        <EntityType Name="Raza">
+          <Key>
+            <PropertyRef Name="RazaID" />
+          </Key>
+          <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EsRazaPeligrosa" Type="Byte" />
+          <NavigationProperty Name="Especie" Relationship="Self.RefRaza26" FromRole="Raza" ToRole="Especie" />
+          <NavigationProperty Name="Campania" Relationship="Self.CampaniaRaza" FromRole="Raza" ToRole="Campania" />
+        </EntityType>
+        <EntityType Name="TipoVacuna">
+          <Key>
+            <PropertyRef Name="VacunaID" />
+          </Key>
+          <Property Name="VacunaID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vacunacion" Relationship="Self.RefTipoVacuna41" FromRole="TipoVacuna" ToRole="Vacunacion" />
+        </EntityType>
+        <EntityType Name="TipoVisita">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefTipoVisita27" FromRole="TipoVisita" ToRole="VeterinarioMascota" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaConfirmacionAlta" Type="DateTime" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoUsuario" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImagenDNI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoDocumento" Type="Int16" Nullable="false" />
+          <Property Name="NumeroDocumento" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="CodigoVerificacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campania" Relationship="Self.RefUsuarios11" FromRole="Usuarios" ToRole="Campania" />
+          <NavigationProperty Name="Direccion" Relationship="Self.RefUsuarios38" FromRole="Usuarios" ToRole="Direccion" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefUsuarios10" FromRole="Usuarios" ToRole="Mascota" />
+          <NavigationProperty Name="Veterinario" Relationship="Self.RefUsuarios1" FromRole="Usuarios" ToRole="Veterinario" />
+        </EntityType>
+        <EntityType Name="Vacunacion">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="RenglonVacuna" />
+          </Key>
+          <Property Name="MascotaID" Type="Int64" Nullable="false" />
+          <Property Name="RenglonVacuna" Type="Int32" Nullable="false" />
+          <Property Name="FechaRevacunacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaAplicacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoSENASA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lote" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dosis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VacunaID" Type="Int32" Nullable="false" />
+          <Property Name="RenglonVisita" Type="Int32" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefMascota21" FromRole="Vacunacion" ToRole="Mascota" />
+          <NavigationProperty Name="TipoVacuna" Relationship="Self.RefTipoVacuna41" FromRole="Vacunacion" ToRole="TipoVacuna" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota47" FromRole="Vacunacion" ToRole="VeterinarioMascota" />
+        </EntityType>
+        <EntityType Name="Veterinario">
+          <Key>
+            <PropertyRef Name="VeterinarioID" />
+          </Key>
+          <Property Name="VeterinarioID" Type="Int32" Nullable="false" />
+          <Property Name="NumeroMatricula" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FechaVerificacionMatricula" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios1" FromRole="Veterinario" ToRole="Usuarios" />
+          <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinario39" FromRole="Veterinario" ToRole="VeterinarioMascota" />
+        </EntityType>
+        <EntityType Name="VeterinarioMascota">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+            <PropertyRef Name="RenglonVisita" />
+          </Key>
+          <Property Name="MascotaID" Type="Int64" Nullable="false" />
+          <Property Name="RenglonVisita" Type="Int32" Nullable="false" />
+          <Property Name="FechaConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Peso" Type="Int32" />
+          <Property Name="ReportoENO" Type="Byte" Nullable="false" />
+          <Property Name="TipoID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeterinarioID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fallecimiento" Relationship="Self.RefVeterinarioMascota45" FromRole="VeterinarioMascota" ToRole="Fallecimiento" />
+          <NavigationProperty Name="Mascota" Relationship="Self.RefMascota20" FromRole="VeterinarioMascota" ToRole="Mascota" />
+          <NavigationProperty Name="MedicamentosMascotas" Relationship="Self.RefVeterinarioMascota46" FromRole="VeterinarioMascota" ToRole="MedicamentosMascotas" />
+          <NavigationProperty Name="TipoVisita" Relationship="Self.RefTipoVisita27" FromRole="VeterinarioMascota" ToRole="TipoVisita" />
+          <NavigationProperty Name="Vacunacion" Relationship="Self.RefVeterinarioMascota47" FromRole="VeterinarioMascota" ToRole="Vacunacion" />
+          <NavigationProperty Name="Veterinario" Relationship="Self.RefVeterinario39" FromRole="VeterinarioMascota" ToRole="Veterinario" />
+        </EntityType>
+        <Association Name="RefCampania37">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campania">
+              <PropertyRef Name="CampaniaID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="CampaniaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios11">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Campania">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota42">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios38">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefEspecie25">
+          <End Role="Especie" Type="Self.Especie" Multiplicity="1" />
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especie">
+              <PropertyRef Name="EspecieID" />
+              <PropertyRef Name="RazaID" />
+            </Principal>
+            <Dependent Role="Mascota">
+              <PropertyRef Name="Especie" />
+              <PropertyRef Name="RazaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefRaza26">
+          <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
+          <End Role="Especie" Type="Self.Especie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raza">
+              <PropertyRef Name="RazaID" />
+            </Principal>
+            <Dependent Role="Especie">
+              <PropertyRef Name="RazaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota14">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="Fallecimiento" Type="Self.Fallecimiento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Fallecimiento">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota45">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="Fallecimiento" Type="Self.Fallecimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="Fallecimiento">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota20">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota21">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMascota23">
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascota">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios10">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Mascota">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMedicamento24">
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamento">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MedicamentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota46">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="MedicamentosMascotas" Type="Self.MedicamentosMascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="MedicamentosMascotas">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefTipoVacuna41">
+          <End Role="TipoVacuna" Type="Self.TipoVacuna" Multiplicity="1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVacuna">
+              <PropertyRef Name="VacunaID" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="VacunaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefTipoVisita27">
+          <End Role="TipoVisita" Type="Self.TipoVisita" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVisita">
+              <PropertyRef Name="TipoID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefUsuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Veterinario" Type="Self.Veterinario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Veterinario">
+              <PropertyRef Name="VeterinarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinarioMascota47">
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="0..1" />
+          <End Role="Vacunacion" Type="Self.Vacunacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeterinarioMascota">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Principal>
+            <Dependent Role="Vacunacion">
+              <PropertyRef Name="MascotaID" />
+              <PropertyRef Name="RenglonVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefVeterinario39">
+          <End Role="Veterinario" Type="Self.Veterinario" Multiplicity="1" />
+          <End Role="VeterinarioMascota" Type="Self.VeterinarioMascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterinario">
+              <PropertyRef Name="VeterinarioID" />
+            </Principal>
+            <Dependent Role="VeterinarioMascota">
+              <PropertyRef Name="VeterinarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CampaniaMascota">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
+          <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+        </Association>
+        <Association Name="CampaniaRaza">
+          <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
+          <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campania" EntityType="Self.Campania" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="Especie" EntityType="Self.Especie" />
+          <EntitySet Name="Fallecimiento" EntityType="Self.Fallecimiento" />
+          <EntitySet Name="Mascota" EntityType="Self.Mascota" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" />
+          <EntitySet Name="MedicamentosMascotas" EntityType="Self.MedicamentosMascotas" />
+          <EntitySet Name="Raza" EntityType="Self.Raza" />
+          <EntitySet Name="TipoVacuna" EntityType="Self.TipoVacuna" />
+          <EntitySet Name="TipoVisita" EntityType="Self.TipoVisita" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Vacunacion" EntityType="Self.Vacunacion" />
+          <EntitySet Name="Veterinario" EntityType="Self.Veterinario" />
+          <EntitySet Name="VeterinarioMascota" EntityType="Self.VeterinarioMascota" />
+          <AssociationSet Name="RefCampania37" Association="Self.RefCampania37">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios11" Association="Self.RefUsuarios11">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Campania" EntitySet="Campania" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota42" Association="Self.RefMascota42">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios38" Association="Self.RefUsuarios38">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="RefEspecie25" Association="Self.RefEspecie25">
+            <End Role="Especie" EntitySet="Especie" />
+            <End Role="Mascota" EntitySet="Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefRaza26" Association="Self.RefRaza26">
+            <End Role="Raza" EntitySet="Raza" />
+            <End Role="Especie" EntitySet="Especie" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota14" Association="Self.RefMascota14">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Fallecimiento" EntitySet="Fallecimiento" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota45" Association="Self.RefVeterinarioMascota45">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="Fallecimiento" EntitySet="Fallecimiento" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota20" Association="Self.RefMascota20">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota21" Association="Self.RefMascota21">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+          <AssociationSet Name="RefMascota23" Association="Self.RefMascota23">
+            <End Role="Mascota" EntitySet="Mascota" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios10" Association="Self.RefUsuarios10">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Mascota" EntitySet="Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefMedicamento24" Association="Self.RefMedicamento24">
+            <End Role="Medicamento" EntitySet="Medicamento" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota46" Association="Self.RefVeterinarioMascota46">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+          </AssociationSet>
+          <AssociationSet Name="RefTipoVacuna41" Association="Self.RefTipoVacuna41">
+            <End Role="TipoVacuna" EntitySet="TipoVacuna" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+          <AssociationSet Name="RefTipoVisita27" Association="Self.RefTipoVisita27">
+            <End Role="TipoVisita" EntitySet="TipoVisita" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="RefUsuarios1" Association="Self.RefUsuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Veterinario" EntitySet="Veterinario" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinarioMascota47" Association="Self.RefVeterinarioMascota47">
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+            <End Role="Vacunacion" EntitySet="Vacunacion" />
+          </AssociationSet>
+          <AssociationSet Name="RefVeterinario39" Association="Self.RefVeterinario39">
+            <End Role="Veterinario" EntitySet="Veterinario" />
+            <End Role="VeterinarioMascota" EntitySet="VeterinarioMascota" />
+          </AssociationSet>
+          <AssociationSet Name="CampaniaMascota" Association="Self.CampaniaMascota">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="Mascota" EntitySet="Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="CampaniaRaza" Association="Self.CampaniaRaza">
+            <End Role="Campania" EntitySet="Campania" />
+            <End Role="Raza" EntitySet="Raza" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Campania">
+            <EntityTypeMapping TypeName="Model.Campania">
+              <MappingFragment StoreEntitySet="Campania">
+                <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+                <ScalarProperty Name="CuposDisponibles" ColumnName="CuposDisponibles" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="Model.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="DireccionID" ColumnName="DireccionID" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Piso" ColumnName="Piso" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especie">
+            <EntityTypeMapping TypeName="Model.Especie">
+              <MappingFragment StoreEntitySet="Especie">
+                <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
+                <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fallecimiento">
+            <EntityTypeMapping TypeName="Model.Fallecimiento">
+              <MappingFragment StoreEntitySet="Fallecimiento">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="EspecificacionRiesgoEpidemiologico" ColumnName="EspecificacionRiesgoEpidemiologico" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Causa" ColumnName="Causa" />
+                <ScalarProperty Name="RiesgoEpidemiologico" ColumnName="RiesgoEpidemiologico" />
+                <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mascota">
+            <EntityTypeMapping TypeName="Model.Mascota">
+              <MappingFragment StoreEntitySet="Mascota">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="ImagenChapita" ColumnName="ImagenChapita" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="FechaDeNacimiento" ColumnName="FechaDeNacimiento" />
+                <ScalarProperty Name="FechaValidacion" ColumnName="FechaValidacion" />
+                <ScalarProperty Name="NroIdentificadorCriadero" ColumnName="NroIdentificadorCriadero" />
+                <ScalarProperty Name="CodigoDeChip" ColumnName="CodigoDeChip" />
+                <ScalarProperty Name="DIeta" ColumnName="DIeta" />
+                <ScalarProperty Name="OtrosMedicamentos" ColumnName="OtrosMedicamentos" />
+                <ScalarProperty Name="Pelaje" ColumnName="Pelaje" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="CondicionDeSalud" ColumnName="CondicionDeSalud" />
+                <ScalarProperty Name="OtrosDatosDeSalud" ColumnName="OtrosDatosDeSalud" />
+                <ScalarProperty Name="Tamanio" ColumnName="Tamanio" />
+                <ScalarProperty Name="CertificadoAntirrabica" ColumnName="CertificadoAntirrabica" />
+                <ScalarProperty Name="SeguroResponsabilidadCivil" ColumnName="SeguroResponsabilidadCivil" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamento">
+            <EntityTypeMapping TypeName="Model.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
+                <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Utilizable" ColumnName="Utilizable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicamentosMascotas">
+            <EntityTypeMapping TypeName="Model.MedicamentosMascotas">
+              <MappingFragment StoreEntitySet="MedicamentosMascotas">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="MedicamentID" ColumnName="MedicamentID" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
+                <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raza">
+            <EntityTypeMapping TypeName="Model.Raza">
+              <MappingFragment StoreEntitySet="Raza">
+                <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="EsRazaPeligrosa" ColumnName="EsRazaPeligrosa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoVacuna">
+            <EntityTypeMapping TypeName="Model.TipoVacuna">
+              <MappingFragment StoreEntitySet="TipoVacuna">
+                <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoVisita">
+            <EntityTypeMapping TypeName="Model.TipoVisita">
+              <MappingFragment StoreEntitySet="TipoVisita">
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Model.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="FechaConfirmacionAlta" ColumnName="FechaConfirmacionAlta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="ImagenDNI" ColumnName="ImagenDNI" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+                <ScalarProperty Name="CodigoVerificacion" ColumnName="CodigoVerificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacunacion">
+            <EntityTypeMapping TypeName="Model.Vacunacion">
+              <MappingFragment StoreEntitySet="Vacunacion">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="RenglonVacuna" ColumnName="RenglonVacuna" />
+                <ScalarProperty Name="FechaRevacunacion" ColumnName="FechaRevacunacion" />
+                <ScalarProperty Name="FechaAplicacion" ColumnName="FechaAplicacion" />
+                <ScalarProperty Name="CodigoSENASA" ColumnName="CodigoSENASA" />
+                <ScalarProperty Name="Lote" ColumnName="Lote" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
+                <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veterinario">
+            <EntityTypeMapping TypeName="Model.Veterinario">
+              <MappingFragment StoreEntitySet="Veterinario">
+                <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
+                <ScalarProperty Name="NumeroMatricula" ColumnName="NumeroMatricula" />
+                <ScalarProperty Name="FechaVerificacionMatricula" ColumnName="FechaVerificacionMatricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeterinarioMascota">
+            <EntityTypeMapping TypeName="Model.VeterinarioMascota">
+              <MappingFragment StoreEntitySet="VeterinarioMascota">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+                <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="ReportoENO" ColumnName="ReportoENO" />
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CampaniaMascota" TypeName="Model.CampaniaMascota" StoreEntitySet="CampaniaMascota">
+            <EndProperty Name="Campania">
+              <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+            </EndProperty>
+            <EndProperty Name="Mascota">
+              <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CampaniaRaza" TypeName="Model.CampaniaRaza" StoreEntitySet="CampaniaRaza">
+            <EndProperty Name="Campania">
+              <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+            </EndProperty>
+            <EndProperty Name="Raza">
+              <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
