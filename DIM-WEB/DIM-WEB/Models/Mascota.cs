@@ -43,12 +43,10 @@ namespace DIM_WEB.Models
         public string SeguroResponsabilidadCivil { get; set; }
         public string Nombre { get; set; }
         public int UsuarioID { get; set; }
-        public string Especie { get; set; }
         public string RazaID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direccion> Direccion { get; set; }
-        public virtual Especie Especie1 { get; set; }
         public virtual Fallecimiento Fallecimiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VeterinarioMascota> VeterinarioMascota { get; set; }
@@ -56,6 +54,7 @@ namespace DIM_WEB.Models
         public virtual ICollection<Vacunacion> Vacunacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedicamentosMascotas> MedicamentosMascotas { get; set; }
+        public virtual Raza Raza { get; set; }
         public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Campania> Campania { get; set; }

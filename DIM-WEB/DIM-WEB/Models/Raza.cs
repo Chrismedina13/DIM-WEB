@@ -17,16 +17,18 @@ namespace DIM_WEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Raza()
         {
-            this.Especie = new HashSet<Especie>();
+            this.Mascota = new HashSet<Mascota>();
             this.Campania = new HashSet<Campania>();
         }
     
         public string RazaID { get; set; }
         public string Descripcion { get; set; }
         public Nullable<byte> EsRazaPeligrosa { get; set; }
+        public string EspecieID { get; set; }
     
+        public virtual Especie Especie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Especie> Especie { get; set; }
+        public virtual ICollection<Mascota> Mascota { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Campania> Campania { get; set; }
     }

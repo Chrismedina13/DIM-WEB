@@ -13,10 +13,10 @@ namespace DIM_WEB.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class DIMEntidades : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public DIMEntidades()
+            : base("name=DIMEntidades")
         {
         }
     

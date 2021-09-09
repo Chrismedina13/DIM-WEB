@@ -21,6 +21,8 @@ namespace DIM_WEB.Models
         public string Causa { get; set; }
         public byte RiesgoEpidemiologico { get; set; }
         public Nullable<int> RenglonVisita { get; set; }
+        public Nullable<short> Modo { get; set; }
+        public string Certificado { get; set; }
     
         public virtual Mascota Mascota { get; set; }
         public virtual VeterinarioMascota VeterinarioMascota { get; set; }
