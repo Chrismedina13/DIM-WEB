@@ -46,12 +46,10 @@
   <EntityType Name="Especie">
     <Key>
       <PropertyRef Name="EspecieID" />
-      <PropertyRef Name="RazaID" />
     </Key>
     <Property Name="EspecieID" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Fallecimiento">
     <Key>
@@ -64,6 +62,8 @@
     <Property Name="Causa" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="RiesgoEpidemiologico" Type="tinyint" Nullable="false" />
     <Property Name="RenglonVisita" Type="int" />
+    <Property Name="Modo" Type="smallint" />
+    <Property Name="Certificado" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Mascota">
     <Key>
@@ -88,7 +88,6 @@
     <Property Name="SeguroResponsabilidadCivil" Type="varchar(max)" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="UsuarioID" Type="int" Nullable="false" />
-    <Property Name="Especie" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="Medicamento">
@@ -117,6 +116,7 @@
     <Property Name="RazaID" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" />
     <Property Name="EsRazaPeligrosa" Type="tinyint" />
+    <Property Name="EspecieID" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoVacuna">
     <Key>
@@ -226,17 +226,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RefEspecie25">
+  <Association Name="RefEspecie49">
     <End Role="Especie" Type="Self.Especie" Multiplicity="1" />
-    <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+    <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Especie">
         <PropertyRef Name="EspecieID" />
-        <PropertyRef Name="RazaID" />
       </Principal>
-      <Dependent Role="Mascota">
-        <PropertyRef Name="Especie" />
-        <PropertyRef Name="RazaID" />
+      <Dependent Role="Raza">
+        <PropertyRef Name="EspecieID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -324,7 +322,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RefRaza13">
+  <Association Name="RefRaza50">
+    <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
+    <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raza">
+        <PropertyRef Name="RazaID" />
+      </Principal>
+      <Dependent Role="Mascota">
+        <PropertyRef Name="RazaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RefRaza51">
     <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
     <End Role="CampaniaRaza" Type="Self.CampaniaRaza" Multiplicity="*" />
     <ReferentialConstraint>
@@ -332,18 +342,6 @@
         <PropertyRef Name="RazaID" />
       </Principal>
       <Dependent Role="CampaniaRaza">
-        <PropertyRef Name="RazaID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RefRaza26">
-    <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
-    <End Role="Especie" Type="Self.Especie" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Raza">
-        <PropertyRef Name="RazaID" />
-      </Principal>
-      <Dependent Role="Especie">
         <PropertyRef Name="RazaID" />
       </Dependent>
     </ReferentialConstraint>
@@ -503,9 +501,9 @@
       <End Role="Campania" EntitySet="Campania" />
       <End Role="Direccion" EntitySet="Direccion" />
     </AssociationSet>
-    <AssociationSet Name="RefEspecie25" Association="Self.RefEspecie25">
+    <AssociationSet Name="RefEspecie49" Association="Self.RefEspecie49">
       <End Role="Especie" EntitySet="Especie" />
-      <End Role="Mascota" EntitySet="Mascota" />
+      <End Role="Raza" EntitySet="Raza" />
     </AssociationSet>
     <AssociationSet Name="RefMascota14" Association="Self.RefMascota14">
       <End Role="Mascota" EntitySet="Mascota" />
@@ -535,13 +533,13 @@
       <End Role="Medicamento" EntitySet="Medicamento" />
       <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
     </AssociationSet>
-    <AssociationSet Name="RefRaza13" Association="Self.RefRaza13">
+    <AssociationSet Name="RefRaza50" Association="Self.RefRaza50">
+      <End Role="Raza" EntitySet="Raza" />
+      <End Role="Mascota" EntitySet="Mascota" />
+    </AssociationSet>
+    <AssociationSet Name="RefRaza51" Association="Self.RefRaza51">
       <End Role="Raza" EntitySet="Raza" />
       <End Role="CampaniaRaza" EntitySet="CampaniaRaza" />
-    </AssociationSet>
-    <AssociationSet Name="RefRaza26" Association="Self.RefRaza26">
-      <End Role="Raza" EntitySet="Raza" />
-      <End Role="Especie" EntitySet="Especie" />
     </AssociationSet>
     <AssociationSet Name="RefTipoVacuna41" Association="Self.RefTipoVacuna41">
       <End Role="TipoVacuna" EntitySet="TipoVacuna" />

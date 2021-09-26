@@ -37,14 +37,11 @@
   <EntityType Name="Especie">
     <Key>
       <PropertyRef Name="EspecieID" />
-      <PropertyRef Name="RazaID" />
     </Key>
     <Property Name="EspecieID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Mascota" Relationship="Self.RefEspecie25" FromRole="Especie" ToRole="Mascota" />
-    <NavigationProperty Name="Raza" Relationship="Self.RefRaza26" FromRole="Especie" ToRole="Raza" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Raza" Relationship="Self.RefEspecie49" FromRole="Especie" ToRole="Raza" />
   </EntityType>
   <EntityType Name="Fallecimiento">
     <Key>
@@ -57,6 +54,8 @@
     <Property Name="Causa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RiesgoEpidemiologico" Type="Byte" Nullable="false" />
     <Property Name="RenglonVisita" Type="Int32" />
+    <Property Name="Modo" Type="Int16" />
+    <Property Name="Certificado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Mascota" Relationship="Self.RefMascota14" FromRole="Fallecimiento" ToRole="Mascota" />
     <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota45" FromRole="Fallecimiento" ToRole="VeterinarioMascota" />
   </EntityType>
@@ -83,14 +82,13 @@
     <Property Name="SeguroResponsabilidadCivil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="UsuarioID" Type="Int32" Nullable="false" />
-    <Property Name="Especie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Direccion" Relationship="Self.RefMascota42" FromRole="Mascota" ToRole="Direccion" />
-    <NavigationProperty Name="Especie1" Relationship="Self.RefEspecie25" FromRole="Mascota" ToRole="Especie" />
     <NavigationProperty Name="Fallecimiento" Relationship="Self.RefMascota14" FromRole="Mascota" ToRole="Fallecimiento" />
     <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefMascota20" FromRole="Mascota" ToRole="VeterinarioMascota" />
     <NavigationProperty Name="Vacunacion" Relationship="Self.RefMascota21" FromRole="Mascota" ToRole="Vacunacion" />
     <NavigationProperty Name="MedicamentosMascotas" Relationship="Self.RefMascota23" FromRole="Mascota" ToRole="MedicamentosMascotas" />
+    <NavigationProperty Name="Raza" Relationship="Self.RefRaza50" FromRole="Mascota" ToRole="Raza" />
     <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios10" FromRole="Mascota" ToRole="Usuarios" />
     <NavigationProperty Name="Campania" Relationship="Self.CampaniaMascota" FromRole="Mascota" ToRole="Campania" />
   </EntityType>
@@ -124,7 +122,9 @@
     <Property Name="RazaID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="EsRazaPeligrosa" Type="Byte" />
-    <NavigationProperty Name="Especie" Relationship="Self.RefRaza26" FromRole="Raza" ToRole="Especie" />
+    <Property Name="EspecieID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Especie" Relationship="Self.RefEspecie49" FromRole="Raza" ToRole="Especie" />
+    <NavigationProperty Name="Mascota" Relationship="Self.RefRaza50" FromRole="Raza" ToRole="Mascota" />
     <NavigationProperty Name="Campania" Relationship="Self.CampaniaRaza" FromRole="Raza" ToRole="Campania" />
   </EntityType>
   <EntityType Name="TipoVacuna">
@@ -264,29 +264,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RefEspecie25">
+  <Association Name="RefEspecie49">
     <End Role="Especie" Type="Self.Especie" Multiplicity="1" />
-    <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+    <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Especie">
         <PropertyRef Name="EspecieID" />
-        <PropertyRef Name="RazaID" />
       </Principal>
-      <Dependent Role="Mascota">
-        <PropertyRef Name="Especie" />
-        <PropertyRef Name="RazaID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RefRaza26">
-    <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
-    <End Role="Especie" Type="Self.Especie" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Raza">
-        <PropertyRef Name="RazaID" />
-      </Principal>
-      <Dependent Role="Especie">
-        <PropertyRef Name="RazaID" />
+      <Dependent Role="Raza">
+        <PropertyRef Name="EspecieID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -349,6 +335,18 @@
       </Principal>
       <Dependent Role="MedicamentosMascotas">
         <PropertyRef Name="MascotaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RefRaza50">
+    <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
+    <End Role="Mascota" Type="Self.Mascota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raza">
+        <PropertyRef Name="RazaID" />
+      </Principal>
+      <Dependent Role="Mascota">
+        <PropertyRef Name="RazaID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -460,7 +458,7 @@
     <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
     <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DIMEntidades" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Campania" EntityType="Self.Campania" />
     <EntitySet Name="Direccion" EntityType="Self.Direccion" />
     <EntitySet Name="Especie" EntityType="Self.Especie" />
@@ -491,13 +489,9 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Direccion" EntitySet="Direccion" />
     </AssociationSet>
-    <AssociationSet Name="RefEspecie25" Association="Self.RefEspecie25">
+    <AssociationSet Name="RefEspecie49" Association="Self.RefEspecie49">
       <End Role="Especie" EntitySet="Especie" />
-      <End Role="Mascota" EntitySet="Mascota" />
-    </AssociationSet>
-    <AssociationSet Name="RefRaza26" Association="Self.RefRaza26">
       <End Role="Raza" EntitySet="Raza" />
-      <End Role="Especie" EntitySet="Especie" />
     </AssociationSet>
     <AssociationSet Name="RefMascota14" Association="Self.RefMascota14">
       <End Role="Mascota" EntitySet="Mascota" />
@@ -518,6 +512,10 @@
     <AssociationSet Name="RefMascota23" Association="Self.RefMascota23">
       <End Role="Mascota" EntitySet="Mascota" />
       <End Role="MedicamentosMascotas" EntitySet="MedicamentosMascotas" />
+    </AssociationSet>
+    <AssociationSet Name="RefRaza50" Association="Self.RefRaza50">
+      <End Role="Raza" EntitySet="Raza" />
+      <End Role="Mascota" EntitySet="Mascota" />
     </AssociationSet>
     <AssociationSet Name="RefUsuarios10" Association="Self.RefUsuarios10">
       <End Role="Usuarios" EntitySet="Usuarios" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DIMEntidades">
     <EntitySetMapping Name="Campania">
       <EntityTypeMapping TypeName="Model.Campania">
         <MappingFragment StoreEntitySet="Campania">
@@ -34,7 +34,6 @@
       <EntityTypeMapping TypeName="Model.Especie">
         <MappingFragment StoreEntitySet="Especie">
           <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
-          <ScalarProperty Name="RazaID" ColumnName="RazaID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
         </MappingFragment>
@@ -50,6 +49,8 @@
           <ScalarProperty Name="Causa" ColumnName="Causa" />
           <ScalarProperty Name="RiesgoEpidemiologico" ColumnName="RiesgoEpidemiologico" />
           <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+          <ScalarProperty Name="Modo" ColumnName="Modo" />
+          <ScalarProperty Name="Certificado" ColumnName="Certificado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,7 +76,6 @@
           <ScalarProperty Name="SeguroResponsabilidadCivil" ColumnName="SeguroResponsabilidadCivil" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-          <ScalarProperty Name="Especie" ColumnName="Especie" />
           <ScalarProperty Name="RazaID" ColumnName="RazaID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -106,6 +106,7 @@
           <ScalarProperty Name="RazaID" ColumnName="RazaID" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="EsRazaPeligrosa" ColumnName="EsRazaPeligrosa" />
+          <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
