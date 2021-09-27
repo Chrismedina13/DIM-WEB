@@ -9,7 +9,7 @@ namespace DIM_WEB.Controllers
     public class AdminController : Controller
     {
         // GET: admin
-        public ActionResult Index()
+        public ActionResult Admin()
         {
             return View();
         }
