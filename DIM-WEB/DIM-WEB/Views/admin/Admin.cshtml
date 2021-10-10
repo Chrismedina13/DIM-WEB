@@ -3,5 +3,74 @@
     ViewBag.Title = "Admin";
 }
 
-<h2>Ingresa al administrador de DIM</h2>
+<!DOCTYPE html>
+<html >
 
+
+<head>
+
+<link href="~/Content/admin.css" rel="stylesheet">
+<link href="~/Content/Site.css" rel="stylesheet">
+<script src="~/Scripts/dim-admin.js"></script>
+</head>
+
+
+<body style="        background-image: url('../Content/img/dim-background.png'); object-fit: cover;">
+    
+    
+    
+    <div class="wrapper fadeInDown" id="login">
+
+        <div id="formContent">
+            <br>
+            <br>
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first" style=" text-align:center;">
+                <h2>Ingreso al administrador de DIM</h2>
+                <img src="~/Content/img/logo-dim.png" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form>
+                <input type="text" id="user" class="fadeIn second" name="login" placeholder="Usuario ">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+                <br>
+                <input type="submit" id="submit" class="fadeIn fourth" value="Log In">
+              <div id="alerta-login-incorrecto" class="p-3 d-none"> <div class="alert alert-danger" role="alert"> Los datos ingresados no son validos. </div> </div>
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="link" href="#">Olvidé mi contraseña</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        debugger;
+
+        let user = $("#user");
+        let password = $("#password");
+
+        $("#submit").click(function () {
+            if (user == 'admin' && password == '1234') {
+                $("#login").hide();
+            } else {
+                $("#alerta-user-incorrecto").show();
+            }
+
+
+        });
+
+
+
+    });
+
+
+</script>
