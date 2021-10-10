@@ -13,5 +13,27 @@ namespace DIM_WEB.Controllers
         {
             return View();
         }
+
+        public ActionResult CampaniaAlta()
+        {
+            return View();
+        }
+
+        public ActionResult AdminHome()
+        {
+            return View();
+        }
+
+        public ActionResult Veterinaria()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public JsonResult ValidarAdmin(string usuario, string password) {
+
+            return Json(new { Respuesta = "OK" });
+        }
+
     }
 }
