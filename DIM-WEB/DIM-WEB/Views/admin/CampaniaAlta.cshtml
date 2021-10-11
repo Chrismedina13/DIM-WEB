@@ -3,5 +3,229 @@
     ViewBag.Title = "CampaniaAlta";
 }
 
-<h2>Campania</h2>
+<!doctype html>
 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Alta de Campaña de vacunación</title>
+    <link href="~/Content/admin.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div class="container p-5 my-5 border">
+
+        <h1 class="primary-color"> <span class="glyphicon glyphicon-list-alt"></span>    Alta de Campaña de vacunación</h1>
+        <p class="fst-italic f">Complete el formulario para dar de alta una campaña de vacunación</p>
+
+        <br>
+
+        <img src="~/Content/img/dim-vet.jpg" class="img-responsive " id="icon" alt="User Icon" />
+
+        <br>
+
+
+
+        <div class="row">
+
+            <!-- DIRECCION DE CAMPAÑA-->
+            <div class="col-sm-12 p-3">
+                <label for="formControlInput" class="form-label">Dirección exacta de la campaña</label>
+                <input type="email" class="form-control" id="formControlInput" placeholder="Ingrese la dirección de la campañá">
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <!-- CANTIDAD DE CUPOS-->
+            <div class="col-sm-3 p-3">
+                <label for="formControlInput" class="form-label">Cantidad de cupos</label>
+                <input type="number" class="form-control" id="formControlInput" placeholder="10">
+            </div>
+
+            <!-- TIPO DE CAMPAÑA-->
+            <div class="col-sm-3 p-3 ">
+                <label for="formControlInput" class="form-label">Tipo de campaña</label>
+                <select class="form-select form-select">
+                    <option selected="">Tipo de campaña</option>
+                    <option value="1">Vacunación</option>
+                    <option value="2">Castración</option>
+                    <option value="3">Deparacitación</option>
+                </select>
+            </div>
+
+            <!-- RANGO HORARIO-->
+            <div class="col-sm-5 p-3">
+
+                <label for="formControlInput" class="form-label ">Rango de horarios</label>
+
+                <form class="form-inline">
+
+                    <div class=" form-group px-3">
+
+                        <label class="form-check-label" for="input_starttime">Inicio</label>
+                        <input class="form-control" type="time">
+
+                    </div>
+
+
+                    <div class=" form-group px-3">
+
+                        <label class="form-check-label" for="input_starttime">Fin</label>
+                        <input class="form-control" type="time">
+
+                    </div>
+                </form>
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <div class="row">
+
+            <!-- DIAS DISPONIBLES-->
+            <div class="col-sm-6 p-3">
+
+                <label for="formControlInput" class="form-label ">Días Disponibles</label>
+
+                <form class="form-inline p-3 ">
+
+
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Lun</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Mar</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Mie</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Jue</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Vie</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Sab</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Dom</label>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+            <!-- RAZAS ACEPTADAS-->
+            <div class="col-sm-6 p-3">
+
+                <label for="formControlInput" class="form-label ">Razas aceptadas</label>
+
+                <form class="form-inline p-3">
+
+
+
+                    <div class="form-check form-group  px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Perros</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Gatos</label>
+                    </div>
+
+                    <div class="form-check form-group px-3">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <label class="form-check-label" for="formCheckChecked">Perros de raza peligrosa</label>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+        <div class="row d-flex justify-content-center">
+
+            <input type="submit" id="submit_campaña" class="fw-bold" value="Dar de alta campaña" onclick="AltaCampaña()">
+
+        
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- MODAL DATOS ENVIADOS CORRECTAMENTE-->
+
+
+
+
+</body>
+</html>
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+
+
+    });
+
+    function AltaCampaña() {
+
+      //  $("#exampleModal")
+    }
+
+  
+
+
+</script>
+
+<style>
+</style>
