@@ -10,6 +10,7 @@ namespace DIM_WEB.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

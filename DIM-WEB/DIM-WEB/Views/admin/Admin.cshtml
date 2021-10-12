@@ -33,7 +33,7 @@
 
             <!-- Login Form -->
             <form>
-                <input type="text" id="user" class="fadeIn second" name="login" placeholder="Usuario ">
+                <input type="text" id="email" class="fadeIn second" name="login" placeholder="Email">
                 <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
                 <br>
                 <input type="submit" id="submit" class="fadeIn fourth" value="Log In">
@@ -53,6 +53,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
 
+    //Urls
+    var urlValidarAdmin = '@Html.Raw(Url.Action("ValidarAdmin", "Admin"))';
 
     $(document).ready(function () {
 
@@ -60,12 +62,27 @@
     });
 
     function validarAdmin(){
-        let user = $("#user").val();
+        let email = $("#email").val();
         let password = $("#password").val();
-        if (user == 'admin' && password == '1234') {
-            $("#login").hide();
-        } else {
-            $("#alerta-user-incorrecto").show();
+        if (email != '' && password != '') {
+
+            $.ajax({
+                url: urlValidarAdmin,
+                type: 'POST',
+                data: { "email": email, "password": password },
+                success: function (data) {
+
+                    if (data.Respuesta == "OK") {
+                        alert("OK");
+                    } else {
+                        //Enviar mensaje de error
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                    //Notificar Error
+                },
+            });
         }
     }
 

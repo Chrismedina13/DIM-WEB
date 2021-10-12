@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ModelDIM.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Campania">
           <Key>
             <PropertyRef Name="CampaniaID" />
@@ -67,7 +67,7 @@
           <Property Name="Causa" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="RiesgoEpidemiologico" Type="tinyint" Nullable="false" />
           <Property Name="RenglonVisita" Type="int" />
-          <Property Name="Modo" Type="smallint" />
+          <Property Name="Modo" Type="varchar" MaxLength="50" />
           <Property Name="Certificado" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Mascota">
@@ -155,7 +155,8 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TipoDocumento" Type="smallint" Nullable="false" />
           <Property Name="NumeroDocumento" Type="decimal" Precision="13" Scale="0" Nullable="false" />
-          <Property Name="CodigoVerificacion" Type="int" Nullable="false" />
+          <Property Name="CodigoVerificacion" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Imagen" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Vacunacion">
           <Key>
@@ -477,7 +478,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="ModelDIMStoreContainer">
           <EntitySet Name="Campania" EntityType="Self.Campania" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CampaniaMascota" EntityType="Self.CampaniaMascota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CampaniaRaza" EntityType="Self.CampaniaRaza" Schema="dbo" store:Type="Tables" />
@@ -591,7 +592,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ModelDIM" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Campania">
           <Key>
             <PropertyRef Name="CampaniaID" />
@@ -646,7 +647,7 @@
           <Property Name="Causa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RiesgoEpidemiologico" Type="Byte" Nullable="false" />
           <Property Name="RenglonVisita" Type="Int32" />
-          <Property Name="Modo" Type="Int16" />
+          <Property Name="Modo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Certificado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Mascota" Relationship="Self.RefMascota14" FromRole="Fallecimiento" ToRole="Mascota" />
           <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota45" FromRole="Fallecimiento" ToRole="VeterinarioMascota" />
@@ -753,7 +754,8 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoDocumento" Type="Int16" Nullable="false" />
           <Property Name="NumeroDocumento" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
-          <Property Name="CodigoVerificacion" Type="Int32" Nullable="false" />
+          <Property Name="CodigoVerificacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Campania" Relationship="Self.RefUsuarios11" FromRole="Usuarios" ToRole="Campania" />
           <NavigationProperty Name="Direccion" Relationship="Self.RefUsuarios38" FromRole="Usuarios" ToRole="Direccion" />
           <NavigationProperty Name="Mascota" Relationship="Self.RefUsuarios10" FromRole="Usuarios" ToRole="Mascota" />
@@ -1050,7 +1052,7 @@
           <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
           <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DIMEntidades" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DimEntidades" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Campania" EntityType="Self.Campania" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" />
           <EntitySet Name="Especie" EntityType="Self.Especie" />
@@ -1155,9 +1157,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DIMEntidades">
+        <EntityContainerMapping StorageEntityContainer="ModelDIMStoreContainer" CdmEntityContainer="DimEntidades">
           <EntitySetMapping Name="Campania">
-            <EntityTypeMapping TypeName="Model.Campania">
+            <EntityTypeMapping TypeName="ModelDIM.Campania">
               <MappingFragment StoreEntitySet="Campania">
                 <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
                 <ScalarProperty Name="CuposDisponibles" ColumnName="CuposDisponibles" />
@@ -1170,7 +1172,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="Model.Direccion">
+            <EntityTypeMapping TypeName="ModelDIM.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
                 <ScalarProperty Name="DireccionID" ColumnName="DireccionID" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
@@ -1186,7 +1188,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Especie">
-            <EntityTypeMapping TypeName="Model.Especie">
+            <EntityTypeMapping TypeName="ModelDIM.Especie">
               <MappingFragment StoreEntitySet="Especie">
                 <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1195,7 +1197,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fallecimiento">
-            <EntityTypeMapping TypeName="Model.Fallecimiento">
+            <EntityTypeMapping TypeName="ModelDIM.Fallecimiento">
               <MappingFragment StoreEntitySet="Fallecimiento">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="Lugar" ColumnName="Lugar" />
@@ -1210,7 +1212,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mascota">
-            <EntityTypeMapping TypeName="Model.Mascota">
+            <EntityTypeMapping TypeName="ModelDIM.Mascota">
               <MappingFragment StoreEntitySet="Mascota">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="ImagenChapita" ColumnName="ImagenChapita" />
@@ -1236,7 +1238,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Medicamento">
-            <EntityTypeMapping TypeName="Model.Medicamento">
+            <EntityTypeMapping TypeName="ModelDIM.Medicamento">
               <MappingFragment StoreEntitySet="Medicamento">
                 <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1245,7 +1247,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicamentosMascotas">
-            <EntityTypeMapping TypeName="Model.MedicamentosMascotas">
+            <EntityTypeMapping TypeName="ModelDIM.MedicamentosMascotas">
               <MappingFragment StoreEntitySet="MedicamentosMascotas">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="MedicamentID" ColumnName="MedicamentID" />
@@ -1256,7 +1258,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Raza">
-            <EntityTypeMapping TypeName="Model.Raza">
+            <EntityTypeMapping TypeName="ModelDIM.Raza">
               <MappingFragment StoreEntitySet="Raza">
                 <ScalarProperty Name="RazaID" ColumnName="RazaID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1266,7 +1268,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoVacuna">
-            <EntityTypeMapping TypeName="Model.TipoVacuna">
+            <EntityTypeMapping TypeName="ModelDIM.TipoVacuna">
               <MappingFragment StoreEntitySet="TipoVacuna">
                 <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1275,7 +1277,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoVisita">
-            <EntityTypeMapping TypeName="Model.TipoVisita">
+            <EntityTypeMapping TypeName="ModelDIM.TipoVisita">
               <MappingFragment StoreEntitySet="TipoVisita">
                 <ScalarProperty Name="TipoID" ColumnName="TipoID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1284,7 +1286,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="Model.Usuarios">
+            <EntityTypeMapping TypeName="ModelDIM.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
@@ -1299,11 +1301,12 @@
                 <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
                 <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
                 <ScalarProperty Name="CodigoVerificacion" ColumnName="CodigoVerificacion" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vacunacion">
-            <EntityTypeMapping TypeName="Model.Vacunacion">
+            <EntityTypeMapping TypeName="ModelDIM.Vacunacion">
               <MappingFragment StoreEntitySet="Vacunacion">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="RenglonVacuna" ColumnName="RenglonVacuna" />
@@ -1319,7 +1322,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Veterinario">
-            <EntityTypeMapping TypeName="Model.Veterinario">
+            <EntityTypeMapping TypeName="ModelDIM.Veterinario">
               <MappingFragment StoreEntitySet="Veterinario">
                 <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
                 <ScalarProperty Name="NumeroMatricula" ColumnName="NumeroMatricula" />
@@ -1328,7 +1331,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VeterinarioMascota">
-            <EntityTypeMapping TypeName="Model.VeterinarioMascota">
+            <EntityTypeMapping TypeName="ModelDIM.VeterinarioMascota">
               <MappingFragment StoreEntitySet="VeterinarioMascota">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
@@ -1341,7 +1344,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CampaniaMascota" TypeName="Model.CampaniaMascota" StoreEntitySet="CampaniaMascota">
+          <AssociationSetMapping Name="CampaniaMascota" TypeName="ModelDIM.CampaniaMascota" StoreEntitySet="CampaniaMascota">
             <EndProperty Name="Campania">
               <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
             </EndProperty>
@@ -1349,7 +1352,7 @@
               <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CampaniaRaza" TypeName="Model.CampaniaRaza" StoreEntitySet="CampaniaRaza">
+          <AssociationSetMapping Name="CampaniaRaza" TypeName="ModelDIM.CampaniaRaza" StoreEntitySet="CampaniaRaza">
             <EndProperty Name="Campania">
               <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
             </EndProperty>
