@@ -36,7 +36,7 @@
             <!-- DIRECCION DE CAMPAÑA-->
             <div class="col-sm-12 p-3">
                 <label for="formControlInput" class="form-label">Dirección exacta de la campaña</label>
-                <input type="email" class="form-control" id="dir" placeholder="Ingrese la dirección de la campañá">
+                <input type="email" class="form-control" id="formControlInput" placeholder="Ingrese la dirección de la campañá">
             </div>
 
 
@@ -47,13 +47,13 @@
             <!-- CANTIDAD DE CUPOS-->
             <div class="col-sm-3 p-3">
                 <label for="formControlInput" class="form-label">Cantidad de cupos</label>
-                <input type="number" class="form-control" id="cant" placeholder="10">
+                <input type="number" class="form-control" id="formControlInput" placeholder="10">
             </div>
 
             <!-- TIPO DE CAMPAÑA-->
             <div class="col-sm-3 p-3 ">
                 <label for="formControlInput" class="form-label">Tipo de campaña</label>
-                <select class="form-select form-select" id="tipo">
+                <select class="form-select form-select">
                     <option selected="">Tipo de campaña</option>
                     <option value="1">Vacunación</option>
                     <option value="2">Castración</option>
@@ -71,7 +71,7 @@
                     <div class=" form-group px-3">
 
                         <label class="form-check-label" for="input_starttime">Inicio</label>
-                        <input id="horario" class="form-control" type="time">
+                        <input class="form-control" type="time">
 
                     </div>
 
@@ -218,13 +218,8 @@
     });
 
     function AltaCampaña() {
-    //traer datos del DOM
-         
-    //validaciones inputs
 
-    //modal confirma datos -> boton confirma datos
-
-
+      //  $("#exampleModal")
     }
 
   
