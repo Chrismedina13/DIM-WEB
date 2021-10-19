@@ -52,11 +52,13 @@
                 <br>
                 <br>
 
-                </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
+
+
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -65,26 +67,9 @@
 
     $(document).ready(function () {
 
-
+        $("#submit").click(validarAdmin);
     });
 
-    function validarAdmin() {
-        let user = $("#user").val();
-        let password = $("#pass").val();
-
-
-
-        if (user == 'admin@dim.com' && password == '1234') {
-            alert("holis")
-
-            window.location.href = "../admin/AdminHome";
-
-
-        } else {
-            $("#alerta-user-incorrecto").show();
-        }
-    }
-
-
+  
 
 </script>
