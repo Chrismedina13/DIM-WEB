@@ -31,14 +31,8 @@
                 <img src="~/Content/img/logo-dim.png" id="icon" alt="User Icon" />
             </div>
 
-            <!-- Login Form -->
-            <form>
-                <input type="text" id="email" class="fadeIn second" name="login" placeholder="Email">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-                <br>
-                <input type="submit" id="submit" class="fadeIn fourth" value="Log In">
-                <div id="alerta-login-incorrecto" class="p-3 d-none"> <div class="alert alert-danger" role="alert"> Los datos ingresados no son validos. </div> </div>
-            </form>
+            <div class="container p-3" style="width: 25rem;">
+                <form class="form-signin">
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
@@ -61,28 +55,20 @@
         $("#submit").click(validarAdmin);
     });
 
-    function validarAdmin(){
-        let email = $("#email").val();
-        let password = $("#password").val();
-        if (email != '' && password != '') {
+    function validarAdmin() {
+        let user = $("#user").val();
+        let password = $("#pass").val();
 
-            $.ajax({
-                url: urlValidarAdmin,
-                type: 'POST',
-                data: { "email": email, "password": password },
-                success: function (data) {
 
-                    if (data.Respuesta == "OK") {
-                        alert("OK");
-                    } else {
-                        //Enviar mensaje de error
-                    }
-                },
-                error: function (xhr, textStatus, errorThrown) {
 
-                    //Notificar Error
-                },
-            });
+        if (user == 'admin@dim.com' && password == '1234') {
+            alert("holis")
+
+            window.location.href = "../admin/AdminHome";
+
+
+        } else {
+            $("#alerta-user-incorrecto").show();
         }
     }
 
