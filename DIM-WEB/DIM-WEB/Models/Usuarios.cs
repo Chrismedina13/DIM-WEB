@@ -34,7 +34,8 @@ namespace DIM_WEB.Models
         public string Email { get; set; }
         public short TipoDocumento { get; set; }
         public decimal NumeroDocumento { get; set; }
-        public int CodigoVerificacion { get; set; }
+        public string CodigoVerificacion { get; set; }
+        public string Imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Campania> Campania { get; set; }

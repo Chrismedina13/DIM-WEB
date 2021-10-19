@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDIMStoreContainer" CdmEntityContainer="DimEntidades">
+    <EntitySetMapping Name="Campania">
+      <EntityTypeMapping TypeName="ModelDIM.Campania">
+        <MappingFragment StoreEntitySet="Campania">
+          <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+          <ScalarProperty Name="CuposDisponibles" ColumnName="CuposDisponibles" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="ModelDIM.Direccion">
+        <MappingFragment StoreEntitySet="Direccion">
+          <ScalarProperty Name="DireccionID" ColumnName="DireccionID" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Piso" ColumnName="Piso" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especie">
+      <EntityTypeMapping TypeName="ModelDIM.Especie">
+        <MappingFragment StoreEntitySet="Especie">
+          <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fallecimiento">
+      <EntityTypeMapping TypeName="ModelDIM.Fallecimiento">
+        <MappingFragment StoreEntitySet="Fallecimiento">
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+          <ScalarProperty Name="EspecificacionRiesgoEpidemiologico" ColumnName="EspecificacionRiesgoEpidemiologico" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Causa" ColumnName="Causa" />
+          <ScalarProperty Name="RiesgoEpidemiologico" ColumnName="RiesgoEpidemiologico" />
+          <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+          <ScalarProperty Name="Modo" ColumnName="Modo" />
+          <ScalarProperty Name="Certificado" ColumnName="Certificado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mascota">
+      <EntityTypeMapping TypeName="ModelDIM.Mascota">
+        <MappingFragment StoreEntitySet="Mascota">
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+          <ScalarProperty Name="ImagenChapita" ColumnName="ImagenChapita" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="FechaDeNacimiento" ColumnName="FechaDeNacimiento" />
+          <ScalarProperty Name="FechaValidacion" ColumnName="FechaValidacion" />
+          <ScalarProperty Name="NroIdentificadorCriadero" ColumnName="NroIdentificadorCriadero" />
+          <ScalarProperty Name="CodigoDeChip" ColumnName="CodigoDeChip" />
+          <ScalarProperty Name="DIeta" ColumnName="DIeta" />
+          <ScalarProperty Name="OtrosMedicamentos" ColumnName="OtrosMedicamentos" />
+          <ScalarProperty Name="Pelaje" ColumnName="Pelaje" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="CondicionDeSalud" ColumnName="CondicionDeSalud" />
+          <ScalarProperty Name="OtrosDatosDeSalud" ColumnName="OtrosDatosDeSalud" />
+          <ScalarProperty Name="Tamanio" ColumnName="Tamanio" />
+          <ScalarProperty Name="CertificadoAntirrabica" ColumnName="CertificadoAntirrabica" />
+          <ScalarProperty Name="SeguroResponsabilidadCivil" ColumnName="SeguroResponsabilidadCivil" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicamento">
+      <EntityTypeMapping TypeName="ModelDIM.Medicamento">
+        <MappingFragment StoreEntitySet="Medicamento">
+          <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Utilizable" ColumnName="Utilizable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicamentosMascotas">
+      <EntityTypeMapping TypeName="ModelDIM.MedicamentosMascotas">
+        <MappingFragment StoreEntitySet="MedicamentosMascotas">
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+          <ScalarProperty Name="MedicamentID" ColumnName="MedicamentID" />
+          <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+          <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
+          <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Raza">
+      <EntityTypeMapping TypeName="ModelDIM.Raza">
+        <MappingFragment StoreEntitySet="Raza">
+          <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="EsRazaPeligrosa" ColumnName="EsRazaPeligrosa" />
+          <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoVacuna">
+      <EntityTypeMapping TypeName="ModelDIM.TipoVacuna">
+        <MappingFragment StoreEntitySet="TipoVacuna">
+          <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoVisita">
+      <EntityTypeMapping TypeName="ModelDIM.TipoVisita">
+        <MappingFragment StoreEntitySet="TipoVisita">
+          <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="ModelDIM.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="FechaConfirmacionAlta" ColumnName="FechaConfirmacionAlta" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="ImagenDNI" ColumnName="ImagenDNI" />
+          <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="CodigoVerificacion" ColumnName="CodigoVerificacion" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vacunacion">
+      <EntityTypeMapping TypeName="ModelDIM.Vacunacion">
+        <MappingFragment StoreEntitySet="Vacunacion">
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+          <ScalarProperty Name="RenglonVacuna" ColumnName="RenglonVacuna" />
+          <ScalarProperty Name="FechaRevacunacion" ColumnName="FechaRevacunacion" />
+          <ScalarProperty Name="FechaAplicacion" ColumnName="FechaAplicacion" />
+          <ScalarProperty Name="CodigoSENASA" ColumnName="CodigoSENASA" />
+          <ScalarProperty Name="Lote" ColumnName="Lote" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+          <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
+          <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Veterinario">
+      <EntityTypeMapping TypeName="ModelDIM.Veterinario">
+        <MappingFragment StoreEntitySet="Veterinario">
+          <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
+          <ScalarProperty Name="NumeroMatricula" ColumnName="NumeroMatricula" />
+          <ScalarProperty Name="FechaVerificacionMatricula" ColumnName="FechaVerificacionMatricula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VeterinarioMascota">
+      <EntityTypeMapping TypeName="ModelDIM.VeterinarioMascota">
+        <MappingFragment StoreEntitySet="VeterinarioMascota">
+          <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+          <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
+          <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="ReportoENO" ColumnName="ReportoENO" />
+          <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+          <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CampaniaMascota" TypeName="ModelDIM.CampaniaMascota" StoreEntitySet="CampaniaMascota">
+      <EndProperty Name="Campania">
+        <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+      </EndProperty>
+      <EndProperty Name="Mascota">
+        <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CampaniaRaza" TypeName="ModelDIM.CampaniaRaza" StoreEntitySet="CampaniaRaza">
+      <EndProperty Name="Campania">
+        <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
+      </EndProperty>
+      <EndProperty Name="Raza">
+        <ScalarProperty Name="RazaID" ColumnName="RazaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
