@@ -3,5 +3,77 @@
     ViewBag.Title = "Veterinaria";
 }
 
-<h2>Veterinario</h2>
+<!doctype html>
 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Alta de Campaña de vacunación</title>
+    <link href="~/Content/admin.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.dataTables.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <div class="container p-5 my-5 border">
+
+        <h1 class="primary-color"> <span class="glyphicon glyphicon-list-alt"></span>    Gestión de Veterinarios</h1>
+        <p class="fst-italic f"></p>
+
+        <br>
+
+        <table class="tabla-vet table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+          
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+              
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+    </div>
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+        $('#tabla-vet').DataTable();
+    });
+
+</script>
