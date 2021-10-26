@@ -48,10 +48,10 @@ namespace DIM_WEB.Controllers
             string usuarioApellido = null;
            
                     DimEntidades2 entidades = new DimEntidades2();
-                    List<Usuario> usuarios = entidades.Usuarios.Where(x => x.Email == email && x.TipoUsuario == "ADM").ToList();
+                    List<Usuarios> usuarios = entidades.Usuarios.Where(x => x.Email == email && x.TipoUsuario == "ADM").ToList();
                     if (usuarios.Count > 0)
                     {
-                        foreach (Usuario usuario in usuarios)
+                        foreach (Usuarios usuario in usuarios)
                         {
 
                             if (respuesta != "OK")
@@ -75,12 +75,26 @@ namespace DIM_WEB.Controllers
         }
  
         [HttpPost]
-        public JsonResult CampaniaAlta(string nombre, int cuposDisponibles, int descripcion, Int16 tipo, string contacto, string usuarioID, List<string> razasPermitidas,
+        public JsonResult CampaniaAlta(string nombre, int cuposDisponibles, string descripcion, Int16 tipo, string contacto, string usuarioID, List<string> razasPermitidas,
             string calle, int numero, Int16 piso, string departamento, string localidad, string provincia)
         {
 
 
             return Json(new { Respuesta = "OK" });
+        }
+
+                [HttpPost]
+        public JsonResult ObtenerRazasDeEspecie(string especie)
+        {
+            DimEntidades2 entidades = new DimEntidades2();
+            List<String> resultado = new List<string>();
+
+            List<Raza> razas = entidades.Raza.Where(x => x.EspecieID == especie).ToList();
+            if (razas.Count > 0) {
+                resultado = razas.Select(x => x.Descripcion).ToList();
+            }
+
+            return Json(new { Respuesta = resultado });
         }
     }
 }

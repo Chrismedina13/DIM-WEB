@@ -58,7 +58,7 @@
             <!-- CANTIDAD DE CUPOS-->
             <div class="col-sm-2 p-3">
                 <label for="formControlInput" class="form-label">Cantidad de cupos</label>
-                <input type="number" class="form-control" id="cupos" placeholder="10" required>
+                <input type="number" class="form-control" id="cupos" required>
             </div>
 
 
@@ -67,7 +67,6 @@
             <div class="col-sm-2 p-3 ">
                 <label for="formControlInput" class="form-label">Tipo de campaña</label>
                 <select class="form-select form-select" id="tipo" required>
-                    <option selected="">Tipo de campaña</option>
                     <option value="1">Vacunación</option>
                     <option value="2">Castración</option>
                     <option value="3">Deparacitación</option>
@@ -77,30 +76,36 @@
 
 
             <!-- RAZAS ACEPTADAS-->
-            <div class="col-sm-4 p-3">
+            <div class="col-sm-2 p-3" style="width: 140px;">
 
-                <label for="formControlInput" class="form-label ">Razas aceptadas</label>
+                <label for="formControlInput" class="form-label ">Especie</label>
 
                 <form class="form-inline p-3">
 
                     <div class="form-check form-group  px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="perros" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Perros</label>
+                        <input class="form-check-input" type="radio" onclick="LlenarComboRazas('PERRO')" name="contact" value="" id="perros">
+                        <label class="form-check-label" for="formCheckChecked">Perro</label>
                     </div>
 
                     <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="gatos" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Gatos</label>
+                        <input class="form-check-input" type="radio" onclick="LlenarComboRazas('GATO')" name="contact" value="" id="gatos">
+                        <label class="form-check-label" for="formCheckChecked">Gato</label>
                     </div>
 
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="razasPeligrosas" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Perros de raza peligrosa</label>
-                    </div>
 
                 </form>
 
             </div>
+
+            <div class="col-sm-2 p-3">
+                <label for="formControlInput" class="form-label">Razas aceptadas</label>
+                <select id="razasDeEspecie" class="multiselect-ui form-control" name="razas" multiple="multiple">
+                   
+                </select>
+
+            </div>
+
+
 
 
 
@@ -114,7 +119,7 @@
             <div class="col-sm-2 p-3">
 
                 <label for="formControlInput" class="form-label ">Nro. de contacto</label>
-                <input type="number" class="form-control" id="contacto" placeholder="1138890762" required>
+                <input type="number" class="form-control" id="contacto" placeholder=" Ej: 1138890762" required>
 
 
             </div>
@@ -124,7 +129,7 @@
             <div class="col-sm-4 p-3">
 
                 <label for="formControlInput" class="form-label ">Dirección</label>
-                <input class="form-control" id="direccion" placeholder="Av. Rivadavia" required>
+                <input class="form-control" id="direccion" placeholder="Ej: Av. Rivadavia" required>
 
 
             </div>
@@ -133,7 +138,7 @@
             <div class="col-sm-1 p-3">
 
                 <label for="formControlInput" class="form-label ">Numero</label>
-                <input type="number" class="form-control" id="numero" placeholder="123">
+                <input type="number" class="form-control" id="numero" placeholder="Ej: 123">
 
 
             </div>
@@ -142,7 +147,7 @@
             <div class="col-sm-1 p-3">
 
                 <label for="formControlInput" class="form-label ">Piso</label>
-                <input type="number" class="form-control" id="piso" placeholder="14">
+                <input type="number" class="form-control" id="piso" placeholder="Ej: 14">
 
 
             </div>
@@ -152,7 +157,7 @@
             <div class="col-sm-1 p-3">
 
                 <label for="formControlInput" class="form-label ">Dpto</label>
-                <input class="form-control" id="dpto" placeholder="A">
+                <input class="form-control" id="dpto" placeholder="Ej: A">
 
 
             </div>
@@ -161,7 +166,7 @@
             <div class="col-sm-2 p-3">
 
                 <label for="formControlInput" class="form-label ">Barrio</label>
-                <input class="form-control" id="localidad" placeholder="Caballito" required>
+                <input class="form-control" id="localidad" placeholder="Ej: Caballito" required>
 
 
             </div>
@@ -196,16 +201,16 @@
 
 
 </body>
+
 </html>
-
-
-
 
 <script type="text/javascript">
 
-     var urlAltaCampaña = '@Html.Raw(Url.Action("CampaniaAlta", "Admin"))';
+     var urlAltaCampania = '@Html.Raw(Url.Action("CampaniaAlta", "Admin"))';
+     var urlObtenerRazasEspecies = '@Html.Raw(Url.Action("ObtenerRazasDeEspecie", "Admin"))';
 
     $(document).ready(function () {
+
 
     });
 
@@ -231,7 +236,7 @@
         //let razasPermitidas = [1]
 
         $.ajax({
-            url: urlAltaCampaña,
+            url: urlAltaCampania,
             type: 'POST',
             data: {
                 "nombre": nombre,
@@ -240,7 +245,7 @@
                 "tipo": tipo,
                 "contacto": contacto,
                 "usuarioID": user,
-                "razasPermitidas": "",
+                "razasPermitidas": $("#razasDeEspecie").val(),
                 "calle": direccion,
                 "numero": numero,
                 "piso": piso,
@@ -265,8 +270,30 @@
 
     }
 
+    function LlenarComboRazas(especie) {
 
+        $.ajax({
+            url: urlObtenerRazasEspecies,
+            type: 'POST',
+            data: {
+                "especie": especie
+            },
+            success: function (data) {
+                $("#razasDeEspecie").empty()
+                var select = document.getElementsByName("razas")[0];
+                for (value in data.Respuesta) {
+                    var option = document.createElement("option");
+                    option.text = data.Respuesta[value];
+                    select.add(option);
+                }
+                
+            },
+            error: function (xhr, textStatus, errorThrown) {
 
+            },
+        });
+
+    }
 
 </script>
 
