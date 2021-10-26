@@ -18,7 +18,18 @@
 </head>
 
 <body>
-    <div class="container p-5 my-5 border">
+
+
+    <div class="container p-2  d-flex justify-content-start">
+
+
+        <a class=" fw-bolder" href="../admin/Campania" tabindex="-1" aria-disabled="true">
+            <span style="color: #84a39c;" class="glyphicon glyphicon-arrow-left p-1" aria-hidden="true"></span>Volver a las Campañas
+        </a>
+
+    </div>
+
+    <div class="container p-3  border">
 
         <h1 class="primary-color"> <span class="glyphicon glyphicon-list-alt"></span>    Alta de Campaña de vacunación</h1>
         <p class="fst-italic f">Complete el formulario para dar de alta una campaña de vacunación</p>
@@ -34,26 +45,28 @@
         <div class="row">
 
             <!-- DIRECCION DE CAMPAÑA-->
-            <div class="col-sm-12 p-3">
-                <label for="formControlInput" class="form-label">Dirección exacta de la campaña</label>
-                <input type="email" class="form-control" id="formControlInput" placeholder="Ingrese la dirección de la campañá">
+            <div class="col-sm-2 p-3">
+                <label for="formControlInput" class="form-label">Nombre de la campaña</label>
+                <input class="form-control" id="nombre" placeholder="Ingrese el nombre de la campaña" required>
             </div>
 
-
-        </div>
-
-        <div class="row">
+            <div class="col-sm-2 p-3">
+                <label for="formControlInput" class="form-label">Descripción de la campaña</label>
+                <input class="form-control" id="descripcion" placeholder="Ingrese una descripción de la campaña" required>
+            </div>
 
             <!-- CANTIDAD DE CUPOS-->
-            <div class="col-sm-3 p-3">
+            <div class="col-sm-2 p-3">
                 <label for="formControlInput" class="form-label">Cantidad de cupos</label>
-                <input type="number" class="form-control" id="formControlInput" placeholder="10">
+                <input type="number" class="form-control" id="cupos" placeholder="10" required>
             </div>
 
+
+
             <!-- TIPO DE CAMPAÑA-->
-            <div class="col-sm-3 p-3 ">
+            <div class="col-sm-2 p-3 ">
                 <label for="formControlInput" class="form-label">Tipo de campaña</label>
-                <select class="form-select form-select">
+                <select class="form-select form-select" id="tipo" required>
                     <option selected="">Tipo de campaña</option>
                     <option value="1">Vacunación</option>
                     <option value="2">Castración</option>
@@ -61,110 +74,27 @@
                 </select>
             </div>
 
-            <!-- RANGO HORARIO-->
-            <div class="col-sm-5 p-3">
 
-                <label for="formControlInput" class="form-label ">Rango de horarios</label>
-
-                <form class="form-inline">
-
-                    <div class=" form-group px-3">
-
-                        <label class="form-check-label" for="input_starttime">Inicio</label>
-                        <input class="form-control" type="time">
-
-                    </div>
-
-
-                    <div class=" form-group px-3">
-
-                        <label class="form-check-label" for="input_starttime">Fin</label>
-                        <input class="form-control" type="time">
-
-                    </div>
-                </form>
-
-            </div>
-
-
-
-
-
-        </div>
-
-
-        <div class="row">
-
-            <!-- DIAS DISPONIBLES-->
-            <div class="col-sm-6 p-3">
-
-                <label for="formControlInput" class="form-label ">Días Disponibles</label>
-
-                <form class="form-inline p-3 ">
-
-
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Lun</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Mar</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Mie</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Jue</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Vie</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Sab</label>
-                    </div>
-
-                    <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
-                        <label class="form-check-label" for="formCheckChecked">Dom</label>
-                    </div>
-
-
-                </form>
-
-            </div>
 
             <!-- RAZAS ACEPTADAS-->
-            <div class="col-sm-6 p-3">
+            <div class="col-sm-4 p-3">
 
                 <label for="formControlInput" class="form-label ">Razas aceptadas</label>
 
                 <form class="form-inline p-3">
 
-
-
                     <div class="form-check form-group  px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <input class="form-check-input" type="checkbox" value="" id="perros" checked="">
                         <label class="form-check-label" for="formCheckChecked">Perros</label>
                     </div>
 
                     <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <input class="form-check-input" type="checkbox" value="" id="gatos" checked="">
                         <label class="form-check-label" for="formCheckChecked">Gatos</label>
                     </div>
 
                     <div class="form-check form-group px-3">
-                        <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                        <input class="form-check-input" type="checkbox" value="" id="razasPeligrosas" checked="">
                         <label class="form-check-label" for="formCheckChecked">Perros de raza peligrosa</label>
                     </div>
 
@@ -172,6 +102,69 @@
 
             </div>
 
+
+
+        </div>
+
+
+
+        <div class="row">
+
+            <!-- NRO DE CONTACTO-->
+            <div class="col-sm-2 p-3">
+
+                <label for="formControlInput" class="form-label ">Nro. de contacto</label>
+                <input type="number" class="form-control" id="contacto" placeholder="1138890762" required>
+
+
+            </div>
+
+
+            <!-- DIRECCIÓN-->
+            <div class="col-sm-4 p-3">
+
+                <label for="formControlInput" class="form-label ">Dirección</label>
+                <input class="form-control" id="direccion" placeholder="Av. Rivadavia" required>
+
+
+            </div>
+
+            <!-- NUMERO-->
+            <div class="col-sm-1 p-3">
+
+                <label for="formControlInput" class="form-label ">Numero</label>
+                <input type="number" class="form-control" id="numero" placeholder="123">
+
+
+            </div>
+
+            <!-- PISO-->
+            <div class="col-sm-1 p-3">
+
+                <label for="formControlInput" class="form-label ">Piso</label>
+                <input type="number" class="form-control" id="piso" placeholder="14">
+
+
+            </div>
+
+
+            <!-- DEPARTAMENTO-->
+            <div class="col-sm-1 p-3">
+
+                <label for="formControlInput" class="form-label ">Dpto</label>
+                <input class="form-control" id="dpto" placeholder="A">
+
+
+            </div>
+
+            <!-- LOCALIDAD-->
+            <div class="col-sm-2 p-3">
+
+                <label for="formControlInput" class="form-label ">Barrio</label>
+                <input class="form-control" id="localidad" placeholder="Caballito" required>
+
+
+            </div>
 
 
 
@@ -186,12 +179,13 @@
 
             <input type="submit" id="submit_campaña" class="fw-bold" value="Dar de alta campaña" onclick="AltaCampaña()">
 
-        
+
 
         </div>
 
 
     </div>
+
 
 
 
@@ -209,20 +203,69 @@
 
 <script type="text/javascript">
 
+     var urlAltaCampaña = '@Html.Raw(Url.Action("CampaniaAlta", "Admin"))';
 
     $(document).ready(function () {
-
-
-
 
     });
 
     function AltaCampaña() {
+        debugger;
+        let nombre = $("#nombre").val();
+        let descripcion = $("#descripcion").val();
+        let cupos = $("#cupos").val();
+        let tipo = $("#tipo").val();
 
-      //  $("#exampleModal")
+        let contacto = $("#contacto").val();
+        let direccion = $("#direccion").val();
+        let numero = $("#numero").val();
+        let piso = $("#piso").val();
+        let dpto = $("#dpto").val();
+        let localidad = $("#localidad").val();
+
+
+        //User id
+        let user = localStorage.getItem('UsuarioID');
+
+        //hardcodeo las razas permitidas
+        //let razasPermitidas = [1]
+
+        $.ajax({
+            url: urlAltaCampaña,
+            type: 'POST',
+            data: {
+                "nombre": nombre,
+                "cuposDisponibles": cupos,
+                "descripcion": descripcion,
+                "tipo": tipo,
+                "contacto": contacto,
+                "usuarioID": user,
+                "razasPermitidas": "",
+                "calle": direccion,
+                "numero": numero,
+                "piso": piso,
+                "departamento": dpto,
+                "localidad": localidad,
+                "provincia": ""
+            },
+            success: function (data) {
+
+                if (data.Respuesta == "OK") {
+                    alert("Campaña de vacunación registrada correctamente")
+                    // modal con los datos para confirmar
+                } else {
+                    alert("Error al crear campaña de Vacunación.")
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+            },
+        });
+
+
     }
 
-  
+
 
 
 </script>

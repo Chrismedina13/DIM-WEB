@@ -41,39 +41,39 @@ namespace DIM_WEB.Controllers
         [HttpPost]
         public JsonResult ValidarAdmin(string email, string password)
         {
-
+            
             string respuesta = null;
             int? usuarioID = null;
             string usuarioNombre = null;
             string usuarioApellido = null;
-    
-            DimEntidades entidades = new DimEntidades();
-            List<Usuarios> usuarios = entidades.Usuarios.Where(x => x.Email == email && x.TipoUsuario == "ADM").ToList();
-            if (usuarios.Count > 0)
-            {
-                foreach (Usuarios usuario in usuarios)
-                {
-
-                    if (respuesta != "OK")
+           
+                    DimEntidades2 entidades = new DimEntidades2();
+                    List<Usuario> usuarios = entidades.Usuarios.Where(x => x.Email == email && x.TipoUsuario == "ADM").ToList();
+                    if (usuarios.Count > 0)
                     {
-                        string passwordDesencritado = SecurityManager.DesencriptarTexto(usuario.Password);
-                        if (passwordDesencritado == password) { 
-                            respuesta = "OK";
-                            usuarioID = usuario.UsuarioID;
-                            usuarioApellido = usuario.Apellido;
-                            usuarioNombre = usuario.Nombre;
+                        foreach (Usuario usuario in usuarios)
+                        {
+
+                            if (respuesta != "OK")
+                            {
+                                string passwordDesencritado = SecurityManager.DesencriptarTexto(usuario.Password);
+                                if (passwordDesencritado == password) { 
+                                    respuesta = "OK";
+                                    usuarioID = usuario.UsuarioID;
+                                    usuarioApellido = usuario.Apellido;
+                                    usuarioNombre = usuario.Nombre;
+                                }
+                                else
+                                    respuesta = "Credenciales incorrectas";
+                            }
                         }
-                        else
-                            respuesta = "Credenciales incorrectas";
                     }
-                }
-            }
-            else
-                respuesta = "Credenciales incorrectas";
+                    else
+                        respuesta = "Credenciales incorrectas";
 
             return Json(new { Respuesta = respuesta, UsuarioID = usuarioID, UsuarioNombre = usuarioNombre, UsuarioApellido = usuarioApellido });
         }
-
+ 
         [HttpPost]
         public JsonResult CampaniaAlta(string nombre, int cuposDisponibles, int descripcion, Int16 tipo, string contacto, string usuarioID, List<string> razasPermitidas,
             string calle, int numero, Int16 piso, string departamento, string localidad, string provincia)
