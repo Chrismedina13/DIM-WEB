@@ -23,8 +23,18 @@ namespace DIM_WEB.Controllers
 
         public ActionResult Campania()
         {
+            CampaniasModel model = new CampaniasModel();
+            DimEntidades2 context = new DimEntidades2();
+            var campanias = context.Campania.ToList();
+            foreach (var campania in campanias) {
+                CampaniaModel campaniaAMostrar = new CampaniaModel();
+                campaniaAMostrar.Campania = campania;
+                campaniaAMostrar.Direccion = context.Direccion.ToList().Find(x => x.CampaniaID == campania.CampaniaID);
+                campaniaAMostrar.RazasPermitidas = String.Join(", ", campania.Raza.Select(x => x.Descripcion));
+                model.Campanias.Add(campaniaAMostrar); 
+            }
 
-            return View();
+            return View(model);
 
         }
 
@@ -76,7 +86,7 @@ namespace DIM_WEB.Controllers
  
         [HttpPost]
         public JsonResult CampaniaAlta(string nombre, int cuposDisponibles, string descripcion, Int16 tipo, string contacto, string usuarioID, List<string> razasPermitidas,
-            string calle, int numero, Int16 piso, string departamento, string localidad, string provincia)
+            string calle, int numero, Int16? piso, string departamento, string localidad, string provincia)
         {
             string resultado = null;
             long idCampania;
@@ -139,7 +149,28 @@ namespace DIM_WEB.Controllers
             return Json(new { Respuesta = resultado });
         }
 
+        public JsonResult EliminarCampania(long idCampania) {
 
+            string resultado = null;
+
+            try {
+
+                DimEntidades2 context = new DimEntidades2();
+                Direccion direccion = context.Direccion.Where(x => x.CampaniaID == idCampania).FirstOrDefault();
+                Campania campania = context.Campania.Where(x => x.CampaniaID == idCampania).FirstOrDefault();
+                context.Direccion.Remove(direccion);
+                context.Campania.Where(x => x.CampaniaID == campania.CampaniaID).FirstOrDefault().Raza.Clear();
+                context.Campania.Remove(campania);
+                context.SaveChanges();
+                resultado = "OK";
+
+            } catch(Exception ex) {
+
+                return Json(new { Respuesta = ex.Message });
+            }
+
+            return Json(new { Respuesta = resultado });
+        }
 
 
         #region Utils

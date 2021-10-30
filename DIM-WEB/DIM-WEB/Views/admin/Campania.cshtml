@@ -1,7 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Campania";
-}
+﻿@model DIM_WEB.Models.CampaniasModel
+@{ int renglon = 0; }
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -13,6 +11,8 @@
 
 <script type="text/javascript">
 
+     var urlEliminarCampania = '@Html.Raw(Url.Action("EliminarCampania", "Admin"))';
+
     $(document).ready(function () {
         $('#tabla-campania').DataTable();
     });
@@ -20,6 +20,26 @@
     let table = new DataTable('#tabla-campania', {
 
     });
+
+    function eliminarCampania(idCampania) {
+
+        $.ajax({
+            url: urlEliminarCampania,
+            type: 'POST',
+            data: {
+                "idCampania": idCampania
+            },
+            success: function (data) {
+                if (data.Respuesta == "OK") {
+                    location.reload();
+                }
+               
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+            },
+        });
+    }
 
 </script>
 
@@ -41,43 +61,45 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Fecha Alta Campaña</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
                 <th scope="col">Tipo Campaña</th>
                 <th scope="col">Dirección</th>
+                <th scope="col">Contacto</th>
                 <th scope="col">Cupos Disponibles</th>
                 <th scope="col">Razas aceptadas</th>
-                <th scope="col"> Gestionar Campaña </th>
+                <th scope="col">Gestionar Campaña </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>02/04/21</td>
-                <td>Vacunación</td>
-                <td>Caballito II</td>
-                <td>300</td>
-                <td>Caniche, Golden</td>
-                <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal">Borrar Campaña #1</button></td>
+            @foreach (var campania in Model.Campanias) {
+                        renglon = renglon + 1;
+                    <tr>                        
+                        <th scope="row">@renglon</th>
+                        <td>@campania.Campania.FechaCreacion.ToString("dd-MM-yyyy")</td>
+                        <td>@campania.Campania.Nombre</td>
+                        <td>@campania.Campania.Descripcion</td>
+                        @if (campania.Campania.Tipo == 1)
+                        {
+                            <td>Vacunación</td>
+                        }
+                        else if (campania.Campania.Tipo == 2)
+                        {
+                            <td>Castración</td>
+                        }
+                        else { 
+                            <td>Desparacitación</td>
+                        }
+                        <td>@campania.Direccion.Calle @campania.Direccion.Numero - @campania.Direccion.Localidad</td>
+                        <td>@campania.Campania.Contacto</td>
+                        <td>@campania.Campania.CuposDisponibles</td>
+                        <td>@campania.RazasPermitidas</td>
+                        <td><button type="button" class="btn btn-secondary" onclick="eliminarCampania(@campania.Campania.CampaniaID)" data-toggle="modal" data-target="#modal">Borrar Campaña #1</button></td>
 
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>02/04/21</td>
-                <td>Castracion</td>
-                <td>Comuna 23</td>
-                <td>100</td>
-                <td>Caniche, Labrador Retriever</td>
-                <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal">Borrar Campaña #2</button></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>02/04/21</td>
-                <td>Deparacitacion</td>
-                <td>Rivadavia 546</td>
-                <td>100</td>
-                <td>Galgo ingles, Golden</td>
-                <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal">Borrar Campaña #3</button></td>
+                    </tr>
+            }
 
-            </tr>
+
         </tbody>
     </table>
 </div>
