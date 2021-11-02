@@ -3,5 +3,107 @@
     ViewBag.Title = "Veterinaria";
 }
 
-<h2>Veterinario</h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<div class="container p-5 my-5 border">
+    <h2>Profesionales Veterinarios - DIM</h2>
+
+    <table class="table" id="tabla-campania">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Nro Matricula</th>
+
+                <th scope="col">Teléfono</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Validar Matricula</th>
+                <th scope="col">Gestionar Usuario </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="row">1</th>
+                <td>38999782</td>
+                <td>Fernando</td>
+                <td>Rodriguez</td>
+
+
+                <td>17933</td>
+                <td>1138997833</td>
+                <td>Av. Pedro Goyena 23 5B</td>
+                <td><button type="button" class="btn btn-dim" data-toggle="modal" data-target="#modalValidarMatricula"> Validar Veterinario </button></td>
+                <td><button type="button" class=" btn btn-outline-dim" data-toggle="modal" data-target="#modalEliminarVet">Eliminar Veterinario</button></td>
+
+
+            </tr>
+
+            <tr>
+                <th scope="row">2</th>
+                <td>14555673</td>
+                <td>Luis</td>
+                <td>Gallo</td>
+
+
+                <td>2143</td>
+                <td>15322563</td>
+                <td>Campichuelo 79 9 G</td>
+                <td><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
+                <td><button type="button" class=" btn btn-outline-dim" data-toggle="modal" data-target="#modalEliminarVet">Eliminar Veterinario</button></td>
+
+
+            </tr>
+
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Confirmar Matricula-->
+
+<div class="modal fade" id="modalValidarMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmar Validación de Matricula</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-valida-vet">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-dim ">Confirmar Validación</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Eliminar Veteriario-->
+<div class="modal fade" id="modalEliminarVet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario DIM</h5>
+         
+            </div>
+            <div class="modal-body" id="modal-valida-vet">
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-dim ">Eliminar Veterinario</button>
+                <button type="button" class="btn btn-outline-dim" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
