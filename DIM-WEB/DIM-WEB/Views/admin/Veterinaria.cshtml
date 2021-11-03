@@ -1,8 +1,6 @@
 ﻿
-@{
-    ViewBag.Title = "Veterinaria";
-}
-
+@model DIM_WEB.Models.VeterinariasModel
+@{ int renglon = 0;}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -22,57 +20,56 @@
 
     <table class="table" id="tabla-campania">
         <thead>
-            <tr class="d-flex justify-content-center">
+            <tr>
                 <th scope="col">#</th>
-                <th scope="col">DNI</th>
+                <th scope="col">Fecha De Alta</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Nro Matricula</th>
-
+                <th scope="col">Email</th>
                 <th scope="col">Teléfono</th>
-                <th scope="col">Contacto</th>
-                <th scope="col">Validar Matricula</th>
-                <th scope="col">Gestionar Usuario </th>
+                <th scope="col">Número de Documento </th>
+                <th scope="col">Número Matricula</th>
+                <th scope="col">Validación Matricula</th>
+                <th scope="col">Eliminar Veterinario </th>
             </tr>
         </thead>
         <tbody>
 
-            <tr class="d-flex justify-content-center">
-                <th scope="row">1</th>
-                <td>38999782</td>
-                <td>Fernando</td>
-                <td>Rodriguez</td>
+            @foreach (var veterinario in Model.ListaVeterinaria) {
+                renglon = renglon + 1;
 
 
-                <td>17933</td>
-                <td>1138997833</td>
-                <td>Av. Pedro Goyena 23 5B</td>
-                <td>
+                <tr>
+                    <th scope="row">@renglon</th>
+                    <td>@veterinario.FechaDeAlta.ToString("dd-MM-yyyy")</td>
+                    <td>@veterinario.Nombre</td>
+                    <td>@veterinario.Apellido</td>
+                    <td>@veterinario.Email</td>
+                    <td>@veterinario.Telefono</td>
+                    <td>@veterinario.NumeroDocumento</td>
+                    <td>@veterinario.NumeroMatricula</td>
+                    
+                    @if (veterinario.FechaDeVerificacionMatricula == null)
+                    {
+                        <td>
+                            <button type="button" class="btn btn-dim" data-toggle="modal" data-target="#modalValidarMatricula"> Validar Veterinario </button>
+                        </td>
 
-                    <button type="button" class="btn btn-dim" data-toggle="modal" data-target="#modalValidarMatricula"> Validar Veterinario </button>
-                </td>
-                <td><button type="button" class=" btn btn-outline-dim" data-toggle="modal" data-target="#modalEliminarVet">Gestionar Veterinario</button></td>
-
-
-            </tr>
-
-            <tr>
-                <th scope="row">2</th>
-                <td>14555673</td>
-                <td>Luis</td>
-                <td>Gallo</td>
-
-
-                <td>2143</td>
-                <td>15322563</td>
-                <td>Campichuelo 79 9 G</td>
-                <td><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
-                <td><button type="button" class=" btn btn-outline-dim" data-toggle="modal" data-target="#modalEliminarVet">Desactivar Veterinario</button></td>
+                    }
+                    else { 
+                    
+                        <td><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
+                    
+                    }
 
 
-            </tr>
+                    <td><button type="button" class=" btn btn-outline-dim" data-toggle="modal" data-target="#modalEliminarVet">Eliminar Veterinario</button></td>
 
 
+                </tr>
+
+            
+            }
 
         </tbody>
     </table>

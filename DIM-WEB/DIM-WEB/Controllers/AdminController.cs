@@ -45,7 +45,26 @@ namespace DIM_WEB.Controllers
 
         public ActionResult Veterinaria()
         {
-            return View();
+            VeterinariasModel model = new VeterinariasModel();
+            DimEntidades2 context = new DimEntidades2();
+            var veterinarias = context.Veterinario.ToList();
+            var usuarios = context.Usuarios.ToList();
+            foreach (var veterinario in veterinarias) {
+                VeterinariaModel veterinariaAMostrar = new VeterinariaModel();
+                var usuario = usuarios.Where(x => x.UsuarioID == veterinario.VeterinarioID).FirstOrDefault();
+                veterinariaAMostrar.UsuarioID = veterinario.VeterinarioID;
+                veterinariaAMostrar.FechaDeAlta = usuario.FechaAlta;
+                veterinariaAMostrar.Nombre = usuario.Nombre;
+                veterinariaAMostrar.Apellido = usuario.Apellido;
+                veterinariaAMostrar.Email = usuario.Email;
+                veterinariaAMostrar.NumeroDocumento = usuario.NumeroDocumento;
+                veterinariaAMostrar.NumeroMatricula = veterinario.NumeroMatricula;
+                veterinariaAMostrar.Telefono = usuario.Telefono;
+                veterinariaAMostrar.FechaDeVerificacionMatricula = veterinario.FechaVerificacionMatricula;
+                model.ListaVeterinaria.Add(veterinariaAMostrar);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
