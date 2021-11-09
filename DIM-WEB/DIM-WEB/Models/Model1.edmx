@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModelDIM.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Campania">
           <Key>
             <PropertyRef Name="CampaniaID" />
@@ -16,6 +16,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Contacto" Type="varchar" MaxLength="100" />
           <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CampaniaMascota">
           <Key>
@@ -478,7 +479,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelDIMStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Campania" EntityType="Self.Campania" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CampaniaMascota" EntityType="Self.CampaniaMascota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CampaniaRaza" EntityType="Self.CampaniaRaza" Schema="dbo" store:Type="Tables" />
@@ -592,7 +593,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ModelDIM" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Campania">
           <Key>
             <PropertyRef Name="CampaniaID" />
@@ -604,6 +605,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Direccion" Relationship="Self.RefCampania37" FromRole="Campania" ToRole="Direccion" />
           <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios11" FromRole="Campania" ToRole="Usuarios" />
           <NavigationProperty Name="Mascota" Relationship="Self.CampaniaMascota" FromRole="Campania" ToRole="Mascota" />
@@ -1052,7 +1054,7 @@
           <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
           <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DimEntidades" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DimEntidades2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Campania" EntityType="Self.Campania" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" />
           <EntitySet Name="Especie" EntityType="Self.Especie" />
@@ -1157,9 +1159,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelDIMStoreContainer" CdmEntityContainer="DimEntidades">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DimEntidades2">
           <EntitySetMapping Name="Campania">
-            <EntityTypeMapping TypeName="ModelDIM.Campania">
+            <EntityTypeMapping TypeName="Model.Campania">
               <MappingFragment StoreEntitySet="Campania">
                 <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
                 <ScalarProperty Name="CuposDisponibles" ColumnName="CuposDisponibles" />
@@ -1168,11 +1170,12 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Contacto" ColumnName="Contacto" />
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="ModelDIM.Direccion">
+            <EntityTypeMapping TypeName="Model.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
                 <ScalarProperty Name="DireccionID" ColumnName="DireccionID" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
@@ -1188,7 +1191,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Especie">
-            <EntityTypeMapping TypeName="ModelDIM.Especie">
+            <EntityTypeMapping TypeName="Model.Especie">
               <MappingFragment StoreEntitySet="Especie">
                 <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1197,7 +1200,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fallecimiento">
-            <EntityTypeMapping TypeName="ModelDIM.Fallecimiento">
+            <EntityTypeMapping TypeName="Model.Fallecimiento">
               <MappingFragment StoreEntitySet="Fallecimiento">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="Lugar" ColumnName="Lugar" />
@@ -1212,7 +1215,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mascota">
-            <EntityTypeMapping TypeName="ModelDIM.Mascota">
+            <EntityTypeMapping TypeName="Model.Mascota">
               <MappingFragment StoreEntitySet="Mascota">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="ImagenChapita" ColumnName="ImagenChapita" />
@@ -1238,7 +1241,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Medicamento">
-            <EntityTypeMapping TypeName="ModelDIM.Medicamento">
+            <EntityTypeMapping TypeName="Model.Medicamento">
               <MappingFragment StoreEntitySet="Medicamento">
                 <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1247,7 +1250,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicamentosMascotas">
-            <EntityTypeMapping TypeName="ModelDIM.MedicamentosMascotas">
+            <EntityTypeMapping TypeName="Model.MedicamentosMascotas">
               <MappingFragment StoreEntitySet="MedicamentosMascotas">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="MedicamentID" ColumnName="MedicamentID" />
@@ -1258,7 +1261,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Raza">
-            <EntityTypeMapping TypeName="ModelDIM.Raza">
+            <EntityTypeMapping TypeName="Model.Raza">
               <MappingFragment StoreEntitySet="Raza">
                 <ScalarProperty Name="RazaID" ColumnName="RazaID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1268,7 +1271,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoVacuna">
-            <EntityTypeMapping TypeName="ModelDIM.TipoVacuna">
+            <EntityTypeMapping TypeName="Model.TipoVacuna">
               <MappingFragment StoreEntitySet="TipoVacuna">
                 <ScalarProperty Name="VacunaID" ColumnName="VacunaID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1277,7 +1280,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoVisita">
-            <EntityTypeMapping TypeName="ModelDIM.TipoVisita">
+            <EntityTypeMapping TypeName="Model.TipoVisita">
               <MappingFragment StoreEntitySet="TipoVisita">
                 <ScalarProperty Name="TipoID" ColumnName="TipoID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1286,7 +1289,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="ModelDIM.Usuarios">
+            <EntityTypeMapping TypeName="Model.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
@@ -1306,7 +1309,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vacunacion">
-            <EntityTypeMapping TypeName="ModelDIM.Vacunacion">
+            <EntityTypeMapping TypeName="Model.Vacunacion">
               <MappingFragment StoreEntitySet="Vacunacion">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="RenglonVacuna" ColumnName="RenglonVacuna" />
@@ -1322,7 +1325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Veterinario">
-            <EntityTypeMapping TypeName="ModelDIM.Veterinario">
+            <EntityTypeMapping TypeName="Model.Veterinario">
               <MappingFragment StoreEntitySet="Veterinario">
                 <ScalarProperty Name="VeterinarioID" ColumnName="VeterinarioID" />
                 <ScalarProperty Name="NumeroMatricula" ColumnName="NumeroMatricula" />
@@ -1331,7 +1334,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VeterinarioMascota">
-            <EntityTypeMapping TypeName="ModelDIM.VeterinarioMascota">
+            <EntityTypeMapping TypeName="Model.VeterinarioMascota">
               <MappingFragment StoreEntitySet="VeterinarioMascota">
                 <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
                 <ScalarProperty Name="RenglonVisita" ColumnName="RenglonVisita" />
@@ -1344,7 +1347,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CampaniaMascota" TypeName="ModelDIM.CampaniaMascota" StoreEntitySet="CampaniaMascota">
+          <AssociationSetMapping Name="CampaniaMascota" TypeName="Model.CampaniaMascota" StoreEntitySet="CampaniaMascota">
             <EndProperty Name="Campania">
               <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
             </EndProperty>
@@ -1352,7 +1355,7 @@
               <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CampaniaRaza" TypeName="ModelDIM.CampaniaRaza" StoreEntitySet="CampaniaRaza">
+          <AssociationSetMapping Name="CampaniaRaza" TypeName="Model.CampaniaRaza" StoreEntitySet="CampaniaRaza">
             <EndProperty Name="Campania">
               <ScalarProperty Name="CampaniaID" ColumnName="CampaniaID" />
             </EndProperty>

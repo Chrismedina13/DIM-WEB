@@ -29,6 +29,7 @@ namespace DIM_WEB.Models
         public string Nombre { get; set; }
         public string Contacto { get; set; }
         public int UsuarioID { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direccion> Direccion { get; set; }

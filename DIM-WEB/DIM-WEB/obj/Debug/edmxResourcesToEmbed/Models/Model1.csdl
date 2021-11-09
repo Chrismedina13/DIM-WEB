@@ -11,6 +11,7 @@
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Direccion" Relationship="Self.RefCampania37" FromRole="Campania" ToRole="Direccion" />
     <NavigationProperty Name="Usuarios" Relationship="Self.RefUsuarios11" FromRole="Campania" ToRole="Usuarios" />
     <NavigationProperty Name="Mascota" Relationship="Self.CampaniaMascota" FromRole="Campania" ToRole="Mascota" />
@@ -54,7 +55,7 @@
     <Property Name="Causa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RiesgoEpidemiologico" Type="Byte" Nullable="false" />
     <Property Name="RenglonVisita" Type="Int32" />
-    <Property Name="Modo" Type="Int16" />
+    <Property Name="Modo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Certificado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Mascota" Relationship="Self.RefMascota14" FromRole="Fallecimiento" ToRole="Mascota" />
     <NavigationProperty Name="VeterinarioMascota" Relationship="Self.RefVeterinarioMascota45" FromRole="Fallecimiento" ToRole="VeterinarioMascota" />
@@ -161,7 +162,8 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TipoDocumento" Type="Int16" Nullable="false" />
     <Property Name="NumeroDocumento" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
-    <Property Name="CodigoVerificacion" Type="Int32" Nullable="false" />
+    <Property Name="CodigoVerificacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Campania" Relationship="Self.RefUsuarios11" FromRole="Usuarios" ToRole="Campania" />
     <NavigationProperty Name="Direccion" Relationship="Self.RefUsuarios38" FromRole="Usuarios" ToRole="Direccion" />
     <NavigationProperty Name="Mascota" Relationship="Self.RefUsuarios10" FromRole="Usuarios" ToRole="Mascota" />
@@ -458,7 +460,7 @@
     <End Role="Campania" Type="Self.Campania" Multiplicity="*" />
     <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="DIMEntidades" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DimEntidades2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Campania" EntityType="Self.Campania" />
     <EntitySet Name="Direccion" EntityType="Self.Direccion" />
     <EntitySet Name="Especie" EntityType="Self.Especie" />

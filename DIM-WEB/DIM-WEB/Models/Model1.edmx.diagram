@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06fee14ab60b4b959cb5795ec57ec7c7" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Campania" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Direccion" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Especie" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Fallecimiento" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Mascota" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Medicamento" Width="1.5" PointX="13.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MedicamentosMascotas" Width="1.5" PointX="15.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Raza" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TipoVacuna" Width="1.5" PointX="16.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TipoVisita" Width="1.5" PointX="11.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuarios" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Vacunacion" Width="1.5" PointX="18.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Veterinario" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VeterinarioMascota" Width="1.5" PointX="13.5" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="Model.RefCampania37" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios11" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota42" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios38" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefEspecie49" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota14" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota45" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota20" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota21" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMascota23" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefRaza50" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios10" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefMedicamento24" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota46" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefTipoVacuna41" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefTipoVisita27" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefUsuarios1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinarioMascota47" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RefVeterinario39" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CampaniaMascota" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CampaniaRaza" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

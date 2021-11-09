@@ -11,6 +11,7 @@
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Contacto" Type="varchar" MaxLength="100" />
     <Property Name="UsuarioID" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="CampaniaMascota">
     <Key>
@@ -62,7 +63,7 @@
     <Property Name="Causa" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="RiesgoEpidemiologico" Type="tinyint" Nullable="false" />
     <Property Name="RenglonVisita" Type="int" />
-    <Property Name="Modo" Type="smallint" />
+    <Property Name="Modo" Type="varchar" MaxLength="50" />
     <Property Name="Certificado" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Mascota">
@@ -150,7 +151,8 @@
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="TipoDocumento" Type="smallint" Nullable="false" />
     <Property Name="NumeroDocumento" Type="decimal" Precision="13" Scale="0" Nullable="false" />
-    <Property Name="CodigoVerificacion" Type="int" Nullable="false" />
+    <Property Name="CodigoVerificacion" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="Imagen" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Vacunacion">
     <Key>
