@@ -21,6 +21,11 @@ namespace DIM_WEB.Controllers
             return View();
         }
 
+        public ActionResult MascotasPeligrosas()
+        {
+            return View();
+        }
+
         public ActionResult Campania()
         {
             CampaniasModel model = new CampaniasModel();
