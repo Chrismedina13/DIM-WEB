@@ -260,6 +260,7 @@
     <Content Include="Views\Admin\AdminHome.cshtml" />
     <Content Include="Views\Admin\Campania.cshtml" />
     <Content Include="Views\Admin\MascotasPeligrosas.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
