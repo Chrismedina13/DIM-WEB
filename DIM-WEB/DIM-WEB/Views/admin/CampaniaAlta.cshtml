@@ -100,7 +100,6 @@
             <div class="col-sm-2 p-3">
                 <label for="formControlInput" class="form-label">Razas aceptadas</label>
                 <select id="razasDeEspecie" class="multiselect-ui form-control" name="razas" multiple="multiple">
-                   
                 </select>
 
             </div>
@@ -197,7 +196,25 @@
 
     <!-- MODAL DATOS ENVIADOS CORRECTAMENTE-->
 
+    <div class="modal fade" id="modalOk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Campaña ingresada correctamente en el sistema DIM</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-valida-vet">
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
@@ -256,8 +273,7 @@
             success: function (data) {
 
                 if (data.Respuesta == "OK") {
-                    alert("Campaña de vacunación registrada correctamente")
-                    // modal con los datos para confirmar
+                    alert("Campaña creada correctamente")
                 } else {
                     alert("Error al crear campaña de Vacunación.")
                 }

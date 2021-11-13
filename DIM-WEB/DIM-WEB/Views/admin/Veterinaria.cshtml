@@ -52,7 +52,7 @@
                     @if (veterinario.FechaDeVerificacionMatricula == null)
                     {
                         <td>
-                            <button type="button" class="btn btn-dim" data-toggle="modal" data-target="#modalValidarMatricula"> Validar Veterinario </button>
+                            <button  type="button" class="btn btn-dim" onclick="validarVet(@veterinario.NumeroMatricula)"> Validar Veterinario </button>
                         </td>
 
                     }
@@ -117,3 +117,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    function validarVet(nroMatricula) {
+        //marcar como validado
+        alert("Matriula nro " + nroMatricula + " ha sido validada correctamente")
+        window.location.reload();
+
+
+    }
+
+</script>

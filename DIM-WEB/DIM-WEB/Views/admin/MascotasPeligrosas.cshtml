@@ -3,5 +3,92 @@
     ViewBag.Title = "MascotasPeligrosas";
 }
 
-<h2>MascotasPeligrosas</h2>
 
+
+
+
+
+<div class="container p-2  d-flex justify-content-start">
+
+
+    <a class=" fw-bolder" href="../admin/AdminHome" tabindex="-1" aria-disabled="true">
+        <span style="color: #84a39c;" class="glyphicon glyphicon-arrow-left p-1" aria-hidden="true"></span>Volver al Admin Home
+    </a>
+
+</div>
+
+
+<div class="container p-5 my-5 border">
+    <h2>MascotasPeligrosas</h2>
+
+    <table class="table" id="tabla-mascotas">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DIM</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Raza</th>
+                <th scope="col">????</th>
+                <th scope="col">???</th>
+                <th scope="col">????</th>
+                <th scope="col">???</th>
+                <th scope="col">Estado Validacion </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DIM</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Raza</th>
+                <th scope="col">????</th>
+                <th scope="col">???</th>
+                <th scope="col">????</th>
+                <th scope="col">???</th>
+
+
+                @if (true) //mascota peligrosa no validada
+                {
+                    <th>
+                        <button type="button" class="btn btn-dim" onclick="validarMascota()"> Validar Mascota Peligrosa </button>
+                    </th>
+
+
+                }
+                else
+                {
+                    <th>
+
+                        <span class="fw-bold d-flex justify-content-center">Mascota Validada   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span>
+                    </th>
+
+
+                }
+
+            </tr>
+        </tbody>
+        </table>
+
+</div>
+
+<script>
+
+    function validarMascota() {
+        //cuando se lanza el ajax
+        $("#spinnerMascota").show();
+
+
+        
+        //when succes
+   
+        alert("Mascota Validada correctamente")
+        window.location.reload();
+  
+        //ver si lo llamas con ajax o con el model
+
+     
+
+
+    }
+
+</script>

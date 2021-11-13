@@ -3,5 +3,257 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
 
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Demografía: cantidad de perros y gatos registrados en DIM"
+            },
+            data: [
+                {
+
+                    type: "column",
+                    dataPoints: [
+                        { label: "Perros", y: 100 },
+                        { label: "Perros de raza peligrosa", y: 30 },
+
+                        { label: "Gatos", y: 80 }
+                    ]
+                }
+            ]
+        });
+        chart.render();
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            title: {
+                text: "Vacunaciones por período de tiempo"
+            },
+            animationEnabled: true,
+            data: [
+                {
+                    xValueFormatString: "MMMM",
+                    type: "spline",
+                    dataPoints: [
+                        { x: new Date(2017, 0), y: 25060 },
+                        { x: new Date(2017, 1), y: 27980 },
+                        { x: new Date(2017, 2), y: 33800 },
+                        { x: new Date(2017, 3), y: 49400 },
+                        { x: new Date(2017, 4), y: 40260 },
+                        { x: new Date(2017, 5), y: 33900 },
+                        { x: new Date(2017, 6), y: 48000 },
+                        { x: new Date(2017, 11), y: 49400 }
+                    ]
+                }
+            ]
+        });
+        chart2.render();
+
+        var chart3 = new CanvasJS.Chart("chartContainer3", {
+            title: {
+                text: "Website Traffic Source"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 45,
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} ({y})",
+                yValueFormatString: "#,##0.#" % "",
+                dataPoints: [
+                    { label: "Organic", y: 36 },
+                    { label: "Email Marketing", y: 31 },
+                    { label: "Referrals", y: 7 },
+                    { label: "Twitter", y: 7 },
+                    { label: "Facebook", y: 6 },
+                    { label: "Google", y: 10 },
+                    { label: "Others", y: 3 }
+                ]
+            }]
+        });
+        chart3.render();
+
+        var chart4 = new CanvasJS.Chart("chartContainer4", {
+            nimationEnabled: true,
+            title: {
+                text: "Mobile Phones Used For",
+                fontColor: "Peru"
+            },
+            axisY: {
+                tickThickness: 0,
+                lineThickness: 0,
+                valueFormatString: " ",
+                includeZero: true,
+                gridThickness: 0
+            },
+            axisX: {
+                tickThickness: 0,
+                lineThickness: 0,
+                labelFontSize: 18,
+                labelFontColor: "Peru"
+            },
+            data: [{
+                indexLabelFontSize: 10,
+                toolTipContent: "<span style=\"color:#62C9C3\">{indexLabel}:</span> <span style=\"color:#CD853F\"><strong>{y}</strong></span>",
+                indexLabelPlacement: "inside",
+                indexLabelFontColor: "white",
+                indexLabelFontWeight: 600,
+                indexLabelFontFamily: "Verdana",
+                color: "#62C9C3",
+                type: "bar",
+                dataPoints: [
+                    { y: 21, label: "21%", indexLabel: "Video" },
+                    { y: 25, label: "25%", indexLabel: "Dining" },
+                    { y: 33, label: "33%", indexLabel: "Entertainment" },
+                    { y: 36, label: "36%", indexLabel: "News" },
+                    { y: 42, label: "42%", indexLabel: "Music" },
+                    { y: 49, label: "49%", indexLabel: "Social Networking" },
+                    { y: 50, label: "50%", indexLabel: "Maps/ Search" },
+                    { y: 55, label: "55%", indexLabel: "Weather" },
+                    { y: 61, label: "61%", indexLabel: "Games" }
+                ]
+            }]
+        });
+        chart4.render();
+
+
+    var chart5 = new CanvasJS.Chart("chartContainer5", {
+        animationEnabled: true,
+        exportEnabled: true,
+        title: {
+            text: "UK Unemployement Rate"
+        },
+        axisY: {
+            title: "Percentage",
+            interval: .2,
+            suffix: "%",
+            valueFormatString: "#.0"
+        },
+        data: [{
+            type: "stepLine",
+            yValueFormatString: "#0.0" % "",
+            xValueFormatString: "MMM YYYY",
+            markerSize: 5,
+            dataPoints: [
+                { x: new Date(2016, 9), y: 4.8 },
+                { x: new Date(2016, 10), y: 4.8 },
+                { x: new Date(2016, 11), y: 4.8 },
+                { x: new Date(2017, 0), y: 4.7 },
+                { x: new Date(2017, 1), y: 4.7 },
+                { x: new Date(2017, 2), y: 4.6 },
+                { x: new Date(2017, 3), y: 4.6 },
+                { x: new Date(2017, 4), y: 4.5 },
+                { x: new Date(2017, 5), y: 4.4 },
+                { x: new Date(2017, 6), y: 4.3 },
+                { x: new Date(2017, 7), y: 4.3 },
+                { x: new Date(2017, 8), y: 4.3 }
+            ]
+        }]
+    });
+        chart5.render();
+
+        var chart6 = new CanvasJS.Chart("chartContainer6", {
+            animationEnabled: true,
+            title: {
+                text: "Coal Reserves of Countries"
+            },
+            axisY: {
+                title: "Coal (mn tonnes)"
+            },
+            toolTip: {
+                shared: true,
+                reversed: true
+            },
+            data: [{
+                type: "stackedColumn",
+                name: "Anthracite and Bituminous",
+                showInLegend: "true",
+                yValueFormatString: "#,##0mn tonnes",
+                dataPoints: [
+                    { y: 111338, label: "USA" },
+                    { y: 49088, label: "Russia" },
+                    { y: 62200, label: "China" },
+                    { y: 90085, label: "India" },
+                    { y: 38600, label: "Australia" },
+                    { y: 48750, label: "SA" }
+                ]
+            },
+            {
+                type: "stackedColumn",
+                name: "SubBituminous and Lignite",
+                showInLegend: "true",
+                yValueFormatString: "#,##0mn tonnes",
+                dataPoints: [
+                    { y: 135305, label: "USA" },
+                    { y: 107922, label: "Russia" },
+                    { y: 52300, label: "China" },
+                    { y: 3360, label: "India" },
+                    { y: 39900, label: "Australia" },
+                    { y: 0, label: "SA" }
+                ]
+            }]
+        });
+        chart6.render();
+
+        $(".canvasjs-chart-credit").hide()
+
+    }
+</script>
+
+<div class="container p-2  d-flex justify-content-start">
+
+
+    <a class=" fw-bolder" href="../admin/AdminHome" tabindex="-1" aria-disabled="true">
+        <span style="color: #84a39c;" class="glyphicon glyphicon-arrow-left p-1" aria-hidden="true"></span>Volver al Admin Home
+    </a>
+
+</div>
+
+<div class="container p-2  d-flex justify-content-center">
+
+
+    <h2 class="primary-color fa-font-awesome-alt">Dashboards</h2>
+
+</div>
+
+<div class="container p-5 my-5 border">
+
+
+        <div class="row">
+            <div class="col-4 p-5">
+
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+
+            </div>
+            <div class="col-4 p-5">
+
+
+
+                <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+
+
+            </div>
+            <div class="col-4 p-5">
+                <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 p-5">
+                <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="col-4 p-5">
+                <div id="chartContainer5" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="col-4 p-5">
+                <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>

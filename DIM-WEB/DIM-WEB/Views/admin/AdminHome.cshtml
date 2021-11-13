@@ -22,16 +22,21 @@
 
 
     <main role="main">
+        <div class="d-flex justify-content-between p-2">
+            <a href="../Home/Index" target="_blank">  <img style="height:40px; width:60px;" src="../Content/img/logo-dim.png" alt="Card image cap"> </a>
 
-        <section class="jumbotron text-center header" >
-            <div class="container">
+            <p class="primary-color link d-flex align-content-center" style="cursor: pointer;" onclick="logOut();">Salir del Administrador</p>
+        </div>
+
+        <section class=" text-center header">
+            <div class="container p-2">
                 <h3 class="text-white fa-bold">Bienvenido al Administrador del sistema DIM</h3>
-                <p class=" text-white">Aqui se podrán gestionar las Campañas, Usuarios y visualizar estadísticas del sistema DIM</p>
-              
+                <p class=" text-white fa-bold">Aqui se podrán gestionar las Campañas, Usuarios y visualizar estadísticas del sistema DIM</p>
+
             </div>
         </section>
 
-        <div class="album py-5 bg-light">
+        <div class="album  bg-light">
             <div class="container">
 
                 <div class="row">
@@ -89,7 +94,7 @@
                         <div class="card  box-shadow d-flex justify-content-between align-items-center zoom">
 
                             <h2 class=" fa-bold">Gestionar de Mascotas Peligrosas</h2><br>
-                            <a href="../admin/MascotaPeligrosa" target="_blank">
+                            <a href="../admin/MascotasPeligrosas" target="_blank">
                                 <img class="card-img-top img-dim" src="../Content/img/mascota-peligrosa.jpg" alt="Card image cap">
 
                             </a>
@@ -108,9 +113,32 @@
 
 
                 </div>
-                </div>
+
+
             </div>
-     
+        </div>
+
+
+
+        <div class="container-fluid footer">
+
+            <div class="container-fluid d-flex justify-content-center p-3 ">
+
+                <a href="../admin/Dashboard" target="_blank">
+                    <video autoplay loop muted inline style=" width: 900px; height: 400px;" class="border-5">
+
+                        <source src="../Content/dashboards.mp4" type="video/mp4">
+
+                    </video>
+                </a>
+            </div>
+
+
+
+        </div>
+
+
+
 
     </main>
 
@@ -163,3 +191,23 @@
     }
 
 </style>
+
+<script>
+
+
+  let urlAdminLogIn = '@Html.Raw(Url.Action("Admin", "Admin"))'
+   
+
+        function logOut() {
+         
+            localStorage.removeItem('UsuarioID')
+            localStorage.removeItem('UsuarioNombre')
+            localStorage.removeItem('UsuarioApellido')
+
+            window.location.href = urlAdminLogIn
+
+        }
+
+ 
+
+</script>
