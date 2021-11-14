@@ -1,12 +1,6 @@
 ﻿
-@{
-    ViewBag.Title = "MascotasPeligrosas";
-}
-
-
-
-
-
+@model DIM_WEB.Models.MascotasPeligrosasModel
+@{ int renglon = 0;}
 
 <div class="container p-2  d-flex justify-content-start">
 
@@ -25,70 +19,114 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">DIM</th>
+                <th scope="col">Código DIM </th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Especie</th>
                 <th scope="col">Raza</th>
-                <th scope="col">????</th>
-                <th scope="col">???</th>
-                <th scope="col">????</th>
-                <th scope="col">???</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Pelaje</th>
+                <th scope="col">Fecha de nacimiento</th>
+                <th scope="col">Nombre dueño</th>
+                <th scope="col">Apellido dueño</th>
                 <th scope="col">Estado Validacion </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">DIM</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Raza</th>
-                <th scope="col">????</th>
-                <th scope="col">???</th>
-                <th scope="col">????</th>
-                <th scope="col">???</th>
+            @foreach (var mascota in Model.listaMascotaPeligrosas)
+            {
+                renglon = renglon + 1;
 
 
-                @if (true) //mascota peligrosa no validada
-                {
-                    <th>
-                        <button type="button" class="btn btn-dim" onclick="validarMascota()"> Validar Mascota Peligrosa </button>
-                    </th>
+                <tr>
+                    <th scope="row">@renglon</th>
+                    <td>@mascota.CodigoDim</td>
+                    <td>@mascota.NombreMascota</td>
+                    <td>@mascota.Especie</td>
+                    <td>@mascota.RazaMascota</td>
+                    <td>@mascota.SexoMascota</td>
+                    <td>@mascota.PelajeMascota</td>
+                    <td>@mascota.FechaDeNacimientoMascota.ToString("dd-MM-yyyy")</td>
+                    <td>@mascota.NombreDueño</td>
+                    <td>@mascota.ApellidoDueño</td>
 
 
-                }
-                else
-                {
-                    <th>
+                    @if (mascota.FechaVerificacionMascota == null)
+                    {
+                        <td>
+                            <button type="button" class="btn btn-dim" onclick="validarMascota('@mascota.NombreMascota', @mascota.CodigoDim)"> Validar Mascota </button>
+                        </td>
 
-                        <span class="fw-bold d-flex justify-content-center">Mascota Validada   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span>
-                    </th>
+                    }
+                    else
+                    {
+
+                        <td><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
+
+                    }
+
+                </tr>
 
 
-                }
+            }
 
-            </tr>
         </tbody>
-        </table>
+    </table>
 
 </div>
 
+<!-- Modal Confirmar Matricula-->
+<div class="modal" id="modalValidarMascota" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">DIM - Mascotas Peligrosas</h3>
+            </div>
+            <div class="modal-body" id="modal-valida-masc" style="font-size: 15px">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-dim " onclick="confirmarMascota()">Confirmar Mascota</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
+    var codigoMascota = null;
+    var urlVerificarMascota = '@Html.Raw(Url.Action("ValidarMascotaPeligrosa", "Admin"))';
 
-    function validarMascota() {
+    function validarMascota(mascotaNombre, codigoDim) {
         //cuando se lanza el ajax
-        $("#spinnerMascota").show();
+        //$("#spinnerMascota").show();
+        codigoMascota = codigoDim;
+        document.querySelector("#modal-valida-masc").innerText = "Desea verificar a " + mascotaNombre + " ?";
+        $('#modalValidarMascota').modal('show');
 
+    }
 
-        
-        //when succes
-   
-        alert("Mascota Validada correctamente")
-        window.location.reload();
-  
-        //ver si lo llamas con ajax o con el model
+    function confirmarMascota() {
 
-     
+        $.ajax({
+            url: urlVerificarMascota,
+            type: 'POST',
+            data: {
+                "mascotaID": codigoMascota
+            },
+            success: function (data) {
 
+                if (data.Respuesta == "OK") {
+                    $('#modalValidarMascota').modal('hide');
+                    window.location.reload();
+                } else {
+                    alert("Error al validar Mascota")
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
 
+            },
+        });
     }
 
 </script>

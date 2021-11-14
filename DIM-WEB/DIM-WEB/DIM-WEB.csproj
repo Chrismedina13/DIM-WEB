@@ -151,6 +151,8 @@
     <Compile Include="Models\Mascota.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MascotaPeligrosaModel.cs" />
+    <Compile Include="Models\MascotasPeligrosasModel.cs" />
     <Compile Include="Models\Medicamento.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

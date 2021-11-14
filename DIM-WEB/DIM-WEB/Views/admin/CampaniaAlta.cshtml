@@ -196,26 +196,23 @@
 
     <!-- MODAL DATOS ENVIADOS CORRECTAMENTE-->
 
-    <div class="modal fade" id="modalOk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="modalOk" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Campaña ingresada correctamente en el sistema DIM</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="modal-valida-vet">
+                    <h3 class="modal-title" id="exampleModalLabel">DIM - Alta Campaña</h3>
 
                 </div>
+                <div class="modal-body" id="modal-valida-vet" style="font-size: 15px">
+                    Campaña ingresada correctamente al sistema DIM
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                    <button type="button" id="continuar"class="btn btn-secondary" data-dismiss="modal">Continuar ></button>
 
                 </div>
             </div>
         </div>
     </div>
-
 
 </body>
 
@@ -228,8 +225,11 @@
 
     $(document).ready(function () {
 
-
+        $("#continuar").click(function () {
+            window.location.href = '@Url.Action("Campania","Admin")';
+        });
     });
+
 
     function AltaCampaña() {
         debugger;
@@ -273,7 +273,7 @@
             success: function (data) {
 
                 if (data.Respuesta == "OK") {
-                    alert("Campaña creada correctamente")
+                    $('#modalOk').modal('show');
                 } else {
                     alert("Error al crear campaña de Vacunación.")
                 }
@@ -302,7 +302,7 @@
                     option.text = data.Respuesta[value];
                     select.add(option);
                 }
-                
+
             },
             error: function (xhr, textStatus, errorThrown) {
 

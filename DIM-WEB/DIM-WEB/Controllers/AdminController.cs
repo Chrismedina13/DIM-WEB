@@ -28,7 +28,34 @@ namespace DIM_WEB.Controllers
 
         public ActionResult MascotasPeligrosas()
         {
-            return View();
+            MascotasPeligrosasModel model = new MascotasPeligrosasModel();
+            DimEntidades2 context = new DimEntidades2();
+            List<Raza> razasPeligrosas = context.Raza.Where(x => x.EsRazaPeligrosa == 1).ToList();
+            List<Mascota> mascotas = context.Mascota.ToList();
+            foreach (Mascota mascota in mascotas) {
+
+                Raza raza = razasPeligrosas.Find(x => x.RazaID == mascota.RazaID);
+                if (raza != null) {
+
+                    MascotaPeligrosaModel mascotaPeligrosa = new MascotaPeligrosaModel();
+                    mascotaPeligrosa.NombreDueño = mascota.Usuarios.Nombre;
+                    mascotaPeligrosa.ApellidoDueño = mascota.Usuarios.Apellido;
+                    mascotaPeligrosa.NombreMascota = mascota.Nombre;
+                    mascotaPeligrosa.SexoMascota = mascota.Sexo == 1 ? "Hembra" : "Macho";
+                    mascotaPeligrosa.RazaMascota = raza.Descripcion;
+                    mascotaPeligrosa.PelajeMascota = mascota.Pelaje;
+                    mascotaPeligrosa.CodigoDim = mascota.MascotaID;
+                    mascotaPeligrosa.FechaDeNacimientoMascota = mascota.FechaDeNacimiento.Value;
+                    mascotaPeligrosa.FechaVerificacionMascota = mascota.FechaValidacion;
+                    mascotaPeligrosa.Especie = raza.EspecieID;
+                    
+                    model.listaMascotaPeligrosas.Add(mascotaPeligrosa);
+                                  
+                }
+            
+            }
+
+            return View(model);
         }
 
         public ActionResult Campania()
@@ -196,6 +223,51 @@ namespace DIM_WEB.Controllers
             } catch(Exception ex) {
 
                 return Json(new { Respuesta = ex.Message });
+            }
+
+            return Json(new { Respuesta = resultado });
+        }
+
+        public JsonResult VerificarVeterinario(int usuarioID) {
+
+            string resultado = null;
+            DimEntidades2 context = new DimEntidades2();
+
+            var veterinarias = context.Veterinario.ToList();
+
+            var veterinarioVerificado = veterinarias.Find(x => x.VeterinarioID == usuarioID);
+            if (veterinarioVerificado != null)
+            {
+                veterinarioVerificado.FechaVerificacionMatricula = DateTime.Now.Date;
+                resultado = "OK";
+                context.SaveChanges();
+
+            }
+            else {
+                resultado = "Veterinario no encontrado";            
+            }
+
+            return Json(new { Respuesta = resultado });
+        }
+
+        public JsonResult ValidarMascotaPeligrosa(long mascotaID) {
+
+            string resultado = null;
+            DimEntidades2 context = new DimEntidades2();
+
+            var mascotas = context.Mascota.ToList();
+
+            var aascotaVerificada = mascotas.Find(x => x.MascotaID == mascotaID);
+            if (aascotaVerificada != null)
+            {
+                aascotaVerificada.FechaValidacion = DateTime.Now.Date;
+                resultado = "OK";
+                context.SaveChanges();
+
+            }
+            else
+            {
+                resultado = "Mascota no encontrada";
             }
 
             return Json(new { Respuesta = resultado });
