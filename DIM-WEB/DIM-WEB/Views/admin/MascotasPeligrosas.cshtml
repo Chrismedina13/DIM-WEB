@@ -18,17 +18,17 @@
     <table class="table" id="tabla-mascotas">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Código DIM </th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Especie</th>
-                <th scope="col">Raza</th>
-                <th scope="col">Sexo</th>
-                <th scope="col">Pelaje</th>
-                <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Nombre dueño</th>
-                <th scope="col">Apellido dueño</th>
-                <th scope="col">Estado Validacion </th>
+                <th scope="col" align="center">#</th>
+                <th scope="col" align="center">Código DIM </th>
+                <th scope="col" align="center">Nombre</th>
+                <th scope="col" align="center">Especie</th>
+                <th scope="col" align="center">Raza</th>
+                <th scope="col" align="center">Sexo</th>
+                <th scope="col" align="center">Pelaje</th>
+                <th scope="col" align="center">Fecha de nacimiento</th>
+                <th scope="col" align="justify">Nombre dueño</th>
+                <th scope="col" align="center">Apellido dueño</th>
+                <th scope="col" align="center">Estado Validacion </th>
             </tr>
         </thead>
         <tbody>
@@ -37,22 +37,22 @@
                 renglon = renglon + 1;
 
 
-                <tr>
+                <tr align="center">
                     <th scope="row">@renglon</th>
                     <td>@mascota.CodigoDim</td>
                     <td>@mascota.NombreMascota</td>
                     <td>@mascota.Especie</td>
-                    <td>@mascota.RazaMascota</td>
-                    <td>@mascota.SexoMascota</td>
-                    <td>@mascota.PelajeMascota</td>
-                    <td>@mascota.FechaDeNacimientoMascota.ToString("dd-MM-yyyy")</td>
-                    <td>@mascota.NombreDueño</td>
-                    <td>@mascota.ApellidoDueño</td>
+                    <td align="center">@mascota.RazaMascota</td>
+                    <td align="center">@mascota.SexoMascota</td>
+                    <td align="center">@mascota.PelajeMascota</td>
+                    <td align="center">@mascota.FechaDeNacimientoMascota.ToString("dd-MM-yyyy")</td>
+                    <td align="center">@mascota.NombreDueño</td>
+                    <td align="center">@mascota.ApellidoDueño</td>
 
 
                     @if (mascota.FechaVerificacionMascota == null)
                     {
-                        <td>
+                        <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-dim" onclick="validarMascota('@mascota.NombreMascota', @mascota.CodigoDim)"> Validar Mascota </button>
                         </td>
 
@@ -60,7 +60,7 @@
                     else
                     {
 
-                        <td><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
+                        <td class="d-flex justify-content-center"><span class="fw-bold d-flex justify-content-center ">Validado   <span class="glyphicon glyphicon glyphicon-ok primary-color px-2 " aria-hidden="true"></span></span></td>
 
                     }
 
@@ -81,8 +81,8 @@
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel">DIM - Mascotas Peligrosas</h3>
             </div>
-            <div class="modal-body" id="modal-valida-masc" style="font-size: 15px">
-
+            <div class="modal-body fw-bold d-flex justify-content-center" id="modal-valida-masc" style="font-size: 15px">
+                <div class="loader" id="loader-mascota" style="display:none;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -107,7 +107,7 @@
     }
 
     function confirmarMascota() {
-
+        setTimeout(function () { f() }, 3000);
         $.ajax({
             url: urlVerificarMascota,
             type: 'POST',
@@ -115,7 +115,7 @@
                 "mascotaID": codigoMascota
             },
             success: function (data) {
-
+                $('#loader-mascota').hide();
                 if (data.Respuesta == "OK") {
                     $('#modalValidarMascota').modal('hide');
                     window.location.reload();
@@ -129,4 +129,23 @@
         });
     }
 
+    function f() {
+        $('#loader-mascota').show();
+    }
+
 </script>
+
+
+
+
+<style>
+    .loader {
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #84a39c;
+        width: 30px;
+        height: 30px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+</style>

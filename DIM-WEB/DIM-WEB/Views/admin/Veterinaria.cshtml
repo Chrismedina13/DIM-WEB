@@ -87,7 +87,7 @@
                 
             </div>
             <div class="modal-body" id="modal-valida-vet" style="font-size: 15px">
-                
+                <div class="loader" id="loader-vet" style="display:none;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -130,6 +130,8 @@
     }
 
     function confimarVerificacion() {
+        
+        setTimeout(function () { f()}, 3000);
         $.ajax({
             url: urlVerificarUsuario,
             type: 'POST',
@@ -137,7 +139,7 @@
                 "usuarioID": usuarioAVerificar
             },
             success: function (data) {
-
+                $('#loader-vet').hide();
                 if (data.Respuesta == "OK") {
                     window.location.reload();
                 } else {
@@ -150,4 +152,23 @@
         });
     }
 
+    function f() {
+        $('#loader-vet').show(); 
+    }
+
 </script>
+
+
+<style>
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #84a39c;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+
+</style>
